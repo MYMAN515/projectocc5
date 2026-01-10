@@ -1400,6 +1400,18 @@ select:focus-visible,
     display: inline-block; /* Works with nowrap */
 }
 
+.strip-step.is-clickable {
+    cursor: pointer;
+    border: 2px solid rgba(47, 123, 246, 0.25);
+    transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+
+.strip-step.is-clickable:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-strong);
+    border-color: rgba(47, 123, 246, 0.5);
+}
+
 /* 3. Ensure images fill the wider box properly */
 .strip-step img {
     width: 180px;          /* Larger image size */
@@ -1423,6 +1435,41 @@ select:focus-visible,
     margin: 10px 0 0;
     line-height: 1.4;
     white-space: normal;
+}
+
+.wash-face-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    padding: 20px;
+}
+
+.wash-face-modal-content {
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    padding: 30px;
+    max-width: 720px;
+    width: 100%;
+    box-shadow: var(--shadow-strong);
+    text-align: center;
+}
+
+.wash-face-modal-image {
+    width: min(100%, 520px);
+    height: auto;
+    border-radius: var(--radius-md);
+    margin: 20px auto 30px;
+    display: block;
+    object-fit: contain;
+}
+
+.wash-face-back-btn {
+    font-size: 20px;
+    padding: 12px 28px;
 }
 
 /* Ensure the empty slot matches the wider white box size */

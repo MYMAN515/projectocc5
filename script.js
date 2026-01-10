@@ -17,6 +17,7 @@ let currentState = {
 
 let promptTimeout = null;
 let currentLanguage = 'en';
+let currentWashFaceImages = null;
 
 const translations = {
     ms: {
@@ -136,7 +137,8 @@ const translations = {
         "Packed!": "Sudah dipack!",
         "Congratulations!": "Tahniah!",
         "Congratulations! You completed this topic!": "Tahniah! Kamu sudah tamatkan topik ini.",
-        "Great job! You finished this topic.": "Syabas! Kamu sudah tamatkan topik ini."
+        "Great job! You finished this topic.": "Syabas! Kamu sudah tamatkan topik ini.",
+        "Back": "Kembali"
     },
     zh: {
         "Language": "语言",
@@ -255,7 +257,8 @@ const translations = {
         "Packed!": "已装好！",
         "Congratulations!": "恭喜！",
         "Congratulations! You completed this topic!": "恭喜！你完成了这个主题！",
-        "Great job! You finished this topic.": "做得好！你完成了这个主题。"
+        "Great job! You finished this topic.": "做得好！你完成了这个主题。",
+        "Back": "返回"
     }
 };
 
@@ -268,6 +271,43 @@ function translateText(text) {
     }
     const langMap = translations[currentLanguage] || {};
     return langMap[text] || text;
+}
+
+function getWashFaceImage(modalImages) {
+    if (!modalImages) {
+        return '';
+    }
+    return modalImages[currentLanguage] || modalImages.en || Object.values(modalImages)[0];
+}
+
+function updateWashFaceModalImage() {
+    if (!currentWashFaceImages) {
+        return;
+    }
+    const modalImage = document.getElementById('washFaceImage');
+    if (modalImage) {
+        modalImage.src = getWashFaceImage(currentWashFaceImages);
+        modalImage.alt = translateText("Wash Face");
+    }
+}
+
+function openWashFaceModal(modalImages) {
+    const modal = document.getElementById('washFaceModal');
+    if (!modal) {
+        return;
+    }
+    currentWashFaceImages = modalImages;
+    updateWashFaceModalImage();
+    modal.classList.remove('hidden');
+}
+
+function closeWashFaceModal() {
+    const modal = document.getElementById('washFaceModal');
+    if (!modal) {
+        return;
+    }
+    modal.classList.add('hidden');
+    currentWashFaceImages = null;
 }
 
 // ==========================================
@@ -459,7 +499,12 @@ const content = {
                                     "Gentle circles",
                                     "Rinse with water",
                                     "Pat dry with clean towel"
-                                ]
+                                ],
+                                modalImages: {
+                                    en: "images/eimg.jpg",
+                                    ms: "images/mimg.jpg",
+                                    zh: "images/cimg.jpg"
+                                }
                             },
                             { image: "https://www.telegraph.co.uk/content/dam/men/2017/06/30/TELEMMGLPICT000133447980_trans_NvBQzQNjv4BqdNLuJDSj-bduoIdVkVeVwdhwat7RjkF5CleLcJsFAQc.jpeg?imwidth=640", label: "Wear Deodorant" },
                             { image: "https://globalsymbols.com/uploads/production/image/imagefile/8124/15_8124_b6261b9d-abb4-4bdb-b334-69d8ab3a8ff1.jpg", label: "Change Clean Clothes" },
@@ -729,6 +774,7 @@ function setLanguage(language) {
     localStorage.setItem('pubertyAppLanguage', currentLanguage);
     document.documentElement.lang = currentLanguage === 'zh' ? 'zh-Hans' : currentLanguage;
     updateStaticText();
+    updateWashFaceModalImage();
     rerenderCurrentScreen();
 }
 
@@ -786,6 +832,20 @@ function setupEventListeners() {
     document.getElementById('replayBtn').addEventListener('click', replayTopic);
     document.getElementById('nextTopicBtn').addEventListener('click', goToNextTopic);
     document.getElementById('backToTopicsBtn').addEventListener('click', backToTopics);
+
+    const washFaceBackBtn = document.getElementById('washFaceBackBtn');
+    if (washFaceBackBtn) {
+        washFaceBackBtn.addEventListener('click', closeWashFaceModal);
+    }
+
+    const washFaceModal = document.getElementById('washFaceModal');
+    if (washFaceModal) {
+        washFaceModal.addEventListener('click', (event) => {
+            if (event.target === washFaceModal) {
+                closeWashFaceModal();
+            }
+        });
+    }
 }
 
 // ==========================================
@@ -1042,6 +1102,20 @@ else if (slide.type === "strip") {
             <p class="strip-step-label">${translateText(step.label)}</p>
             ${detailText ? `<p class="strip-step-details">${detailText}</p>` : ''}
         `;
+
+        if (step.modalImages) {
+            stepDiv.classList.add('is-clickable');
+            stepDiv.setAttribute('role', 'button');
+            stepDiv.setAttribute('tabindex', '0');
+            const handleOpen = () => openWashFaceModal(step.modalImages);
+            stepDiv.addEventListener('click', handleOpen);
+            stepDiv.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    handleOpen();
+                }
+            });
+        }
         stripContainer.appendChild(stepDiv);
 
         // Add an arrow AFTER the step, but NOT after the last one

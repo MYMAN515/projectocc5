@@ -16,6 +16,255 @@ let currentState = {
 };
 
 let promptTimeout = null;
+let currentLanguage = 'en';
+
+const translations = {
+    ms: {
+        "Language": "Bahasa",
+        "Welcome here!": "Selamat datang!",
+        "Physical and Emotional Changes": "Perubahan Fizikal dan Emosi",
+        "Hygiene & Self-Care Routine": "Kebersihan & Rutin Penjagaan Diri",
+        "Confidence, Self-Acceptance and Lifestyle": "Keyakinan, Penerimaan Diri dan Gaya Hidup",
+        "Great Job!": "Syabas!",
+        "NEXT": "SETERUSNYA",
+        "Quiz Time!": "Masa Kuiz!",
+        "Animation of Body Changes": "Animasi Perubahan Badan",
+        "Choose me!": "Pilih saya!",
+        "Boy": "Budak lelaki",
+        "Your body changes as you grow!": "Badan kamu berubah apabila membesar!",
+        "You grow taller": "Kamu menjadi lebih tinggi",
+        "Hair grows on your body": "Bulu tumbuh pada badan kamu",
+        "Click me to see changes!": "Klik saya untuk lihat perubahan!",
+        "Growing Taller": "Semakin tinggi",
+        "Growing Body Hair": "Bulu badan tumbuh",
+        "Which picture shows a body change during puberty?": "Gambar manakah menunjukkan perubahan badan semasa akil baligh?",
+        "Sleeping": "Tidur",
+        "Mood Tracker": "Penjejak Emosi",
+        "It's okay to have any feeling": "Tidak mengapa mempunyai apa-apa perasaan",
+        "Tap your mood now!": "Sentuh perasaan kamu sekarang!",
+        "Happy": "Gembira",
+        "Angry": "Marah",
+        "Sad": "Sedih",
+        "Touch your forehead. How does your skin feel to your fingers?": "Sentuh dahi kamu. Bagaimana rasa kulit kamu?",
+        "Smooth and Dry!": "Licin dan kering!",
+        "Silky or Oily": "Licin atau berminyak",
+        "Bumpy and Itchy": "Kasar dan gatal",
+        "How much power does your 'Body Battery' have right now?": "Berapa banyak tenaga dalam “Bateri Badan” kamu sekarang?",
+        "Timeline Matching Activity": "Aktiviti Padanan Garis Masa",
+        "Changes happen over time, especially during puberty": "Perubahan berlaku mengikut masa, terutamanya semasa akil baligh",
+        "Before puberty: You are still a child": "Sebelum akil baligh: Kamu masih kanak-kanak",
+        "You are not tall": "Kamu belum tinggi",
+        "You have no beard": "Kamu belum berjanggut",
+        "During puberty: You start growing taller": "Semasa akil baligh: Kamu mula membesar tinggi",
+        "Then: Body hair appears": "Kemudian: Bulu badan muncul",
+        "So: You start to shave": "Jadi: Kamu mula bercukur",
+        "When does body hair appear?": "Bila bulu badan muncul?",
+        "Body Hair": "Bulu badan",
+        "Before Puberty": "Sebelum akil baligh",
+        "After Puberty": "Selepas akil baligh",
+        "When does a person have short legs?": "Bila seseorang mempunyai kaki yang pendek?",
+        "Hygiene and Self-Care Routines": "Kebersihan dan Rutin Penjagaan Diri",
+        "Daily Routine Builders": "Pembina Rutin Harian",
+        "Let's watch a video about daily routines!": "Mari tonton video tentang rutin harian!",
+        "My Morning Hygiene Steps": "Langkah Kebersihan Pagi Saya",
+        "Wake Up": "Bangun tidur",
+        "Brush Teeth": "Gosok gigi",
+        "Wash Face": "Basuh muka",
+        "Wear Deodorant": "Pakai deodoran",
+        "Change Clean Clothes": "Tukar pakaian bersih",
+        "Look! One step is missing.": "Lihat! Satu langkah hilang.",
+        "Play Toys": "Main permainan",
+        "Drag-and-drop hygiene kits": "Kit kebersihan seret dan lepas",
+        "When we shower, we need specific tools!": "Bila mandi, kita perlukan alat khusus!",
+        "Which is the essential kit in taking shower?": "Yang manakah alat penting untuk mandi?",
+        "Soap": "Sabun",
+        "Shampoo": "Syampu",
+        "Towel": "Tuala",
+        "Toothbrush": "Berus gigi",
+        "Toys": "Mainan",
+        "Positive Body Image": "Imej Badan Positif",
+        "My body is amazing!": "Badan saya hebat!",
+        "Everyone looks different": "Semua orang kelihatan berbeza",
+        "I am strong and special!": "Saya kuat dan istimewa!",
+        "I love myself!": "Saya sayang diri saya!",
+        "I am...": "Saya...",
+        "Strong": "Kuat",
+        "Special": "Istimewa",
+        "Amazing": "Hebat",
+        "Which shows positive body image?": "Yang manakah menunjukkan imej badan positif?",
+        "My body is strong": "Badan saya kuat",
+        "My body is bad": "Badan saya tidak bagus",
+        "What I Like About Me": "Apa yang Saya Suka Tentang Diri Saya",
+        "I have special talents!": "Saya ada bakat istimewa!",
+        "What do you see in the mirror today that makes you smile?": "Apa yang kamu lihat di cermin hari ini yang membuat kamu tersenyum?",
+        "My Cool Hair": "Rambut saya yang keren",
+        "My Strong Legs": "Kaki saya yang kuat",
+        "My Happy Eyes": "Mata saya yang gembira",
+        "My Favourite Shirt": "Baju kegemaran saya",
+        "Today, I did a great job at...": "Hari ini, saya berjaya dalam...",
+        "Helping others": "Menolong orang lain",
+        "Finishing my homework": "Menyiapkan kerja rumah",
+        "Trying a new food": "Mencuba makanan baru",
+        "Sleep Impact Quiz": "Kuiz Kesan Tidur",
+        "Sleep helps you grow!": "Tidur membantu kamu membesar!",
+        "Sleep makes you strong": "Tidur membuat kamu kuat",
+        "When tired, you need rest": "Bila letih, kamu perlu berehat",
+        "Sleep gives you energy!": "Tidur memberi kamu tenaga!",
+        "Which child is well-rested?": "Kanak-kanak yang mana cukup rehat?",
+        "Sleeping Child": "Kanak-kanak tidur",
+        "Tired Child": "Kanak-kanak letih",
+        "What does sleep give you?": "Tidur memberi kamu apa?",
+        "Energy": "Tenaga",
+        "Video Games": "Permainan video",
+        "Nutrition Impact Quiz": "Kuiz Kesan Pemakanan",
+        "Food gives you energy!": "Makanan memberi kamu tenaga!",
+        "Eat fruits and vegetables": "Makan buah-buahan dan sayur-sayuran",
+        "Healthy food makes you strong": "Makanan sihat membuat kamu kuat",
+        "Junk food is okay sometimes, not always": "Makanan ringan boleh sekali-sekala, bukan selalu",
+        "Tap the HEALTHY foods!": "Sentuh makanan SIHAT!",
+        "Vegetables": "Sayur-sayuran",
+        "Fruits": "Buah-buahan",
+        "Candy": "Gula-gula",
+        "Burger": "Burger",
+        "Which foods help you grow strong?": "Makanan manakah membantu kamu menjadi kuat?",
+        "Only Candy": "Hanya gula-gula",
+        "Check Kits 🎒": "Semak Kit 🎒",
+        "Check My Bag 🎒": "Semak Beg Saya 🎒",
+        "GYM BAG": "BEG GIM",
+        "Packed!": "Sudah dipack!",
+        "Congratulations!": "Tahniah!",
+        "Congratulations! You completed this topic!": "Tahniah! Kamu sudah tamatkan topik ini.",
+        "Great job! You finished this topic.": "Syabas! Kamu sudah tamatkan topik ini."
+    },
+    zh: {
+        "Language": "语言",
+        "Welcome here!": "欢迎来到这里！",
+        "Physical and Emotional Changes": "身体与情绪变化",
+        "Hygiene & Self-Care Routine": "卫生与自我护理",
+        "Confidence, Self-Acceptance and Lifestyle": "自信、自我接纳与生活方式",
+        "Great Job!": "做得好！",
+        "NEXT": "下一步",
+        "Quiz Time!": "小测验时间！",
+        "Animation of Body Changes": "身体变化动画",
+        "Choose me!": "选择我！",
+        "Boy": "男孩",
+        "Your body changes as you grow!": "你的身体会随着成长而变化！",
+        "You grow taller": "你会长高",
+        "Hair grows on your body": "身上会长出毛发",
+        "Click me to see changes!": "点击我查看变化！",
+        "Growing Taller": "长高",
+        "Growing Body Hair": "长出体毛",
+        "Which picture shows a body change during puberty?": "哪张图片显示青春期的身体变化？",
+        "Sleeping": "睡觉",
+        "Mood Tracker": "情绪记录",
+        "It's okay to have any feeling": "有任何感受都没关系",
+        "Tap your mood now!": "点击你现在的心情！",
+        "Happy": "开心",
+        "Angry": "生气",
+        "Sad": "伤心",
+        "Touch your forehead. How does your skin feel to your fingers?": "摸摸你的额头。皮肤摸起来怎么样？",
+        "Smooth and Dry!": "光滑又干爽！",
+        "Silky or Oily": "光滑或油油的",
+        "Bumpy and Itchy": "粗糙并发痒",
+        "How much power does your 'Body Battery' have right now?": "你的“身体电量”现在有多少？",
+        "Timeline Matching Activity": "时间线配对活动",
+        "Changes happen over time, especially during puberty": "变化会随着时间发生，尤其是青春期",
+        "Before puberty: You are still a child": "青春期前：你还是孩子",
+        "You are not tall": "你还不高",
+        "You have no beard": "你还没有胡子",
+        "During puberty: You start growing taller": "青春期中：你开始长高",
+        "Then: Body hair appears": "然后：体毛出现",
+        "So: You start to shave": "所以：你开始刮胡子",
+        "When does body hair appear?": "体毛什么时候出现？",
+        "Body Hair": "体毛",
+        "Before Puberty": "青春期前",
+        "After Puberty": "青春期后",
+        "When does a person have short legs?": "人什么时候腿短？",
+        "Hygiene and Self-Care Routines": "卫生与自我护理习惯",
+        "Daily Routine Builders": "日常作息建立",
+        "Let's watch a video about daily routines!": "我们来观看一个关于日常作息的视频！",
+        "My Morning Hygiene Steps": "我的早晨卫生步骤",
+        "Wake Up": "起床",
+        "Brush Teeth": "刷牙",
+        "Wash Face": "洗脸",
+        "Wear Deodorant": "使用止汗剂",
+        "Change Clean Clothes": "换干净衣服",
+        "Look! One step is missing.": "看！少了一个步骤。",
+        "Play Toys": "玩玩具",
+        "Drag-and-drop hygiene kits": "拖放卫生用品包",
+        "When we shower, we need specific tools!": "洗澡时需要特定的用品！",
+        "Which is the essential kit in taking shower?": "洗澡必备的用品是哪一个？",
+        "Soap": "肥皂",
+        "Shampoo": "洗发水",
+        "Towel": "毛巾",
+        "Toothbrush": "牙刷",
+        "Toys": "玩具",
+        "Positive Body Image": "积极的身体形象",
+        "My body is amazing!": "我的身体很棒！",
+        "Everyone looks different": "每个人都不一样",
+        "I am strong and special!": "我很强壮也很特别！",
+        "I love myself!": "我爱自己！",
+        "I am...": "我是……",
+        "Strong": "强壮",
+        "Special": "特别",
+        "Amazing": "很棒",
+        "Which shows positive body image?": "哪个显示积极的身体形象？",
+        "My body is strong": "我的身体很强壮",
+        "My body is bad": "我的身体不好",
+        "What I Like About Me": "我喜欢自己的地方",
+        "I have special talents!": "我有特别的才能！",
+        "What do you see in the mirror today that makes you smile?": "今天你在镜子里看到什么让你微笑？",
+        "My Cool Hair": "我的酷发型",
+        "My Strong Legs": "我强壮的腿",
+        "My Happy Eyes": "我开心的眼睛",
+        "My Favourite Shirt": "我最喜欢的衣服",
+        "Today, I did a great job at...": "今天我做得很好的是……",
+        "Helping others": "帮助他人",
+        "Finishing my homework": "完成作业",
+        "Trying a new food": "尝试新食物",
+        "Sleep Impact Quiz": "睡眠影响测验",
+        "Sleep helps you grow!": "睡眠帮助你成长！",
+        "Sleep makes you strong": "睡眠让你强壮",
+        "When tired, you need rest": "累了就要休息",
+        "Sleep gives you energy!": "睡眠给你能量！",
+        "Which child is well-rested?": "哪个孩子休息好了？",
+        "Sleeping Child": "睡觉的孩子",
+        "Tired Child": "疲惫的孩子",
+        "What does sleep give you?": "睡眠给你什么？",
+        "Energy": "能量",
+        "Video Games": "电子游戏",
+        "Nutrition Impact Quiz": "营养影响测验",
+        "Food gives you energy!": "食物给你能量！",
+        "Eat fruits and vegetables": "吃水果和蔬菜",
+        "Healthy food makes you strong": "健康的食物让你强壮",
+        "Junk food is okay sometimes, not always": "垃圾食品偶尔可以，但不能经常吃",
+        "Tap the HEALTHY foods!": "点击健康的食物！",
+        "Vegetables": "蔬菜",
+        "Fruits": "水果",
+        "Candy": "糖果",
+        "Burger": "汉堡",
+        "Which foods help you grow strong?": "哪些食物帮助你变强壮？",
+        "Only Candy": "只有糖果",
+        "Check Kits 🎒": "查看用品 🎒",
+        "Check My Bag 🎒": "查看我的包 🎒",
+        "GYM BAG": "健身包",
+        "Packed!": "已装好！",
+        "Congratulations!": "恭喜！",
+        "Congratulations! You completed this topic!": "恭喜！你完成了这个主题！",
+        "Great job! You finished this topic.": "做得好！你完成了这个主题。"
+    }
+};
+
+function translateText(text) {
+    if (typeof text !== 'string') {
+        return text;
+    }
+    if (currentLanguage === 'en') {
+        return text;
+    }
+    const langMap = translations[currentLanguage] || {};
+    return langMap[text] || text;
+}
 
 // ==========================================
 // CONTENT DATA
@@ -442,10 +691,64 @@ const content = {
 // INITIALIZATION
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
+    initializeLanguage();
     initializeApp();
     setupEventListeners();
     loadProgress();
 });
+
+function initializeLanguage() {
+    const savedLanguage = localStorage.getItem('pubertyAppLanguage');
+    currentLanguage = savedLanguage || 'en';
+    document.documentElement.lang = currentLanguage === 'zh' ? 'zh-Hans' : currentLanguage;
+
+    const select = document.getElementById('languageSelect');
+    if (select) {
+        select.value = currentLanguage;
+        select.addEventListener('change', (event) => {
+            setLanguage(event.target.value);
+        });
+    }
+
+    updateStaticText();
+}
+
+function setLanguage(language) {
+    currentLanguage = language;
+    localStorage.setItem('pubertyAppLanguage', currentLanguage);
+    document.documentElement.lang = currentLanguage === 'zh' ? 'zh-Hans' : currentLanguage;
+    updateStaticText();
+    rerenderCurrentScreen();
+}
+
+function updateStaticText() {
+    document.querySelectorAll('[data-i18n]').forEach((node) => {
+        const key = node.getAttribute('data-i18n');
+        node.textContent = translateText(key);
+    });
+}
+
+function rerenderCurrentScreen() {
+    switch (currentState.stage) {
+        case 'home':
+            showScreen('homepage');
+            break;
+        case 'topics':
+            showTopicSelection();
+            break;
+        case 'teach':
+            showTeachContent();
+            break;
+        case 'activity':
+            goToActivity();
+            break;
+        case 'quiz':
+            goToQuiz();
+            break;
+        default:
+            break;
+    }
+}
 
 function initializeApp() {
     showScreen('homepage');
@@ -535,7 +838,7 @@ function showTopicSelection() {
     const submoduleKey = `submodule${currentState.submodule}`;
     const submodule = content[submoduleKey];
     
-    document.getElementById('submoduleTitle').textContent = submodule.title;
+    document.getElementById('submoduleTitle').textContent = translateText(submodule.title);
     
     const topicGrid = document.getElementById('topicGrid');
     topicGrid.innerHTML = '';
@@ -561,7 +864,7 @@ function showTopicSelection() {
         }
 
         const titleText = document.createElement('div');
-        titleText.textContent = topic.title;
+        titleText.textContent = translateText(topic.title);
         titleText.style.fontWeight = 'bold';
         titleText.style.fontSize = '28px'; // Slightly larger text to match
         card.appendChild(titleText);
@@ -603,7 +906,7 @@ function showTeachContent() {
         document.getElementById('teachNextBtn').classList.remove('hidden');
     }
 
-    document.getElementById('teachTitle').textContent = topic.title;
+    document.getElementById('teachTitle').textContent = translateText(topic.title);
     const teachContent = document.getElementById('teachContent');
     teachContent.innerHTML = '';
     
@@ -618,7 +921,7 @@ function showTeachContent() {
             container.className = 'gender-selection-container';
             const text = document.createElement('p');
             text.className = 'teach-text';
-            text.textContent = slide.text;
+            text.textContent = translateText(slide.text);
             container.appendChild(text);
 
             const grid = document.createElement('div');
@@ -629,7 +932,7 @@ function showTeachContent() {
                 card.className = 'gender-card';
                 card.innerHTML = `
                     <img src="${choice.image}" class="gender-img">
-                    <p class="gender-label">${choice.label}</p>
+                    <p class="gender-label">${translateText(choice.label)}</p>
                 `;
                 card.onclick = () => {
                     currentState.gender = choice.gender; // Sets 'male' or 'female'
@@ -669,7 +972,7 @@ function showTeachContent() {
 
             const btn = document.createElement('button');
             btn.className = 'nav-btn reveal-action-btn pulse'; 
-            btn.innerText = "Check Kits 🎒";
+            btn.innerText = translateText("Check Kits 🎒");
 
             revealContainer.appendChild(leftTools);
             revealContainer.appendChild(img);
@@ -695,7 +998,7 @@ function showTeachContent() {
                     toolEl.style.cursor = 'pointer'; // Make it clickable
                     toolEl.innerHTML = `
                         <img src="${item.image}" style="width: 80px; height: 80px; object-fit: contain; margin-bottom: 15px;">
-                        <p class="option-text" style="font-size: 20px; font-weight: bold; margin: 0;">${item.name}</p>
+                        <p class="option-text" style="font-size: 20px; font-weight: bold; margin: 0;">${translateText(item.name)}</p>
                     `;
                     
                     // Add click event to play sound
@@ -720,7 +1023,7 @@ else if (slide.type === "strip") {
         stepDiv.className = 'strip-step';
         stepDiv.innerHTML = `
             <img src="${step.image}" alt="${step.label}">
-            <p>${step.label}</p>
+            <p>${translateText(step.label)}</p>
         `;
         stripContainer.appendChild(stepDiv);
 
@@ -744,7 +1047,7 @@ else if (slide.type === "video") {
     
     // Create the HTML5 video element
     videoContainer.innerHTML = `
-        <p class="teach-text">${slide.text}</p>
+        <p class="teach-text">${translateText(slide.text)}</p>
         <video 
             width="100%" 
             max-width="800px" 
@@ -783,10 +1086,12 @@ else if (slide.type === "video") {
                 slideDiv.appendChild(icon);
             }
 
-            const text = document.createElement('p');
-            text.className = 'teach-text';
-            text.textContent = slide.text;
-            slideDiv.appendChild(text);
+            if (slide.text) {
+                const text = document.createElement('p');
+                text.className = 'teach-text';
+                text.textContent = translateText(slide.text);
+                slideDiv.appendChild(text);
+            }
         }
         
         teachContent.appendChild(slideDiv);
@@ -820,7 +1125,7 @@ function goToActivity() {
     const submoduleKey = `submodule${currentState.submodule}`;
     const topic = content[submoduleKey].topics.find(t => t.id === currentState.topic);
     if (promptTimeout) clearTimeout(promptTimeout);
-    document.getElementById('activityTitle').textContent = topic.activity.instruction;
+    document.getElementById('activityTitle').textContent = translateText(topic.activity.instruction);
     
     const activityContent = document.getElementById('activityContent');
     activityContent.innerHTML = '';
@@ -904,7 +1209,7 @@ function renderClickToReveal(activity, container) {
 
         const label = document.createElement('div');
         label.className = 'option-text';
-        label.textContent = item.label;
+        label.textContent = translateText(item.label);
         label.style.fontSize = '24px';
         label.style.marginTop = '15px';
 
@@ -936,7 +1241,7 @@ function renderEmotionMatch(activity, container) {
     
     const scenarioText = document.createElement('p');
     scenarioText.className = 'teach-text';
-    scenarioText.textContent = activity.scenarios[currentScenario].text;
+    scenarioText.textContent = translateText(activity.scenarios[currentScenario].text);
     container.appendChild(scenarioText);
     
     const emotionsDiv = document.createElement('div');
@@ -953,7 +1258,7 @@ function renderEmotionMatch(activity, container) {
         
         const label = document.createElement('div');
         label.className = 'emotion-label';
-        label.textContent = emotion.label;
+        label.textContent = translateText(emotion.label);
         
         card.appendChild(img);
         card.appendChild(label);
@@ -969,7 +1274,7 @@ function renderEmotionMatch(activity, container) {
                     currentScenario++;
                     if (currentScenario < activity.scenarios.length) {
                         // Next scenario
-                        scenarioText.textContent = activity.scenarios[currentScenario].text;
+                        scenarioText.textContent = translateText(activity.scenarios[currentScenario].text);
                         document.querySelectorAll('.emotion-card').forEach(c => c.classList.remove('selected'));
                     } else {
                         // Complete
@@ -1013,7 +1318,7 @@ function renderSelectMultiple(activity, container) {
         
         const text = document.createElement('div');
         text.className = 'option-text';
-        text.textContent = item.text;
+        text.textContent = translateText(item.text);
         option.appendChild(text);
         
         let selected = false;
@@ -1075,7 +1380,7 @@ function renderTimeline(activity, container) {
         
         option.innerHTML = `
             <div class="option-icon" style="font-size: 40px;">${item.icon}</div>
-            <div class="option-text" style="font-size: 22px;">${item.stage}</div>
+            <div class="option-text" style="font-size: 22px;">${translateText(item.stage)}</div>
         `;
 
         option.addEventListener('click', () => {
@@ -1113,7 +1418,7 @@ function renderRoutineBuilder(activity, container) {
         
         const label = document.createElement('div');
         label.className = 'routine-step-label';
-        label.textContent = step.step;
+        label.textContent = translateText(step.step);
         
         stepDiv.appendChild(icon);
         stepDiv.appendChild(label);
@@ -1146,7 +1451,7 @@ function renderMatchItems(activity, container) {
         
         const text = document.createElement('div');
         text.className = 'option-text';
-        text.textContent = `${item.item} → ${item.use}`;
+        text.textContent = `${translateText(item.item)} → ${translateText(item.use)}`;
         
         option.appendChild(icon);
         option.appendChild(text);
@@ -1198,7 +1503,7 @@ function renderPositiveTraits(activity, container) {
 
         card.innerHTML += `
             <div class="option-icon">${trait.icon}</div>
-            <div class="option-text">${trait.text}</div>
+            <div class="option-text">${translateText(trait.text)}</div>
         `;
         
         card.onclick = () => {
@@ -1251,7 +1556,7 @@ function renderMultiSelect(activity, container) {
         
         const text = document.createElement('div');
         text.className = 'option-text';
-        text.textContent = item.text;
+        text.textContent = translateText(item.text);
         option.appendChild(text);
         
         option.addEventListener('click', () => {
@@ -1293,7 +1598,7 @@ function renderCompare(activity, container) {
         
         const text = document.createElement('div');
         text.className = 'option-text';
-        text.textContent = item.text;
+        text.textContent = translateText(item.text);
         
         option.appendChild(img);
         option.appendChild(text);
@@ -1333,7 +1638,7 @@ function goToQuiz() {
     // 1. Add Question Text
     const question = document.createElement('p');
     question.className = 'teach-text';
-    question.textContent = quizData.question;
+    question.textContent = translateText(quizData.question);
     quizContent.appendChild(question);
 
     // 2. Add Main Question Image (used in Mood Tracker)
@@ -1371,7 +1676,7 @@ function goToQuiz() {
 
         const text = document.createElement('div');
         text.className = 'option-text';
-        text.textContent = option.text;
+        text.textContent = translateText(option.text);
         optionDiv.appendChild(text);
         
         optionDiv.addEventListener('click', () => {
@@ -1563,7 +1868,7 @@ function loadProgress() {
 window.onload = () => {
     loadProgress();
     showScreen('homepage'); 
-    startPromptTimeout(); // Start the 2-second timer for the main page buttons
+    resetPromptTimeout(); // Start the 2-second timer for the main page buttons
 };
 
 function updateTeachUI() {
@@ -1573,24 +1878,24 @@ function updateTeachUI() {
     const contentArea = document.getElementById('teachContent');
 
     if (slide.type === "strip") {
-        let html = `<h2 class="teach-text">${slide.text}</h2>`;
+        let html = `<h2 class="teach-text">${translateText(slide.text || '')}</h2>`;
         html += `<div class="hygiene-strip">`;
         slide.steps.forEach(step => {
             html += `
                 <div class="strip-item">
                     <div class="strip-icon">${step.icon}</div>
-                    <div class="strip-label">${step.label}</div>
+                    <div class="strip-label">${translateText(step.label)}</div>
                 </div>`;
         });
         html += `</div>`;
         contentArea.innerHTML = html;
     } else {
         // Your old image/text code here
-        contentArea.innerHTML = `<p class="teach-text">${slide.text}</p>`;
+        contentArea.innerHTML = `<p class="teach-text">${translateText(slide.text || '')}</p>`;
     }
 
     // Reset Hint Timer
-    startPromptTimeout();
+    resetPromptTimeout();
 }
 
 function renderSequenceActivity(activity, container) {
@@ -1661,7 +1966,7 @@ function renderSequenceActivity(activity, container) {
         
         card.innerHTML = `
             <img src="${choice.image}" style="width: 150px; height: 150px; object-fit: cover; border-radius: 10px; margin-bottom: 10px;">
-            <div class="option-text" style="font-weight: bold; font-size: 18px;">${choice.text}</div>
+            <div class="option-text" style="font-weight: bold; font-size: 18px;">${translateText(choice.text)}</div>
         `;
 
         // --- UPDATED HOVER EFFECTS ---
@@ -1701,7 +2006,7 @@ function renderSequenceActivity(activity, container) {
 
                 // Reward sequence
                 triggerStars(); 
-                const msg = new SpeechSynthesisUtterance("Congratulations!");
+                const msg = new SpeechSynthesisUtterance(translateText("Congratulations!"));
                 window.speechSynthesis.speak(msg);
 
                 setTimeout(() => {
@@ -1775,19 +2080,19 @@ function completeTopic() {
 function renderCategoryActivity(activity, container) {
     container.innerHTML = `
         <div class="activity-wrapper" style="display: flex; flex-direction: column; align-items: center;">
-            <p class="instruction-text" style="font-size: 32px; margin-bottom: 20px;">${activity.instruction}</p>
+            <p class="instruction-text" style="font-size: 32px; margin-bottom: 20px;">${translateText(activity.instruction)}</p>
             
             <div style="display: flex; gap: 60px; align-items: center; justify-content: center; width: 100%;">
                 <div id="gymBag" class="target-container" style="width: 300px; height: 300px; border: 8px dashed #4CAF50; border-radius: 30px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #fff;">
                     <span style="font-size: 100px;">👜</span>
-                    <p class="teach-text" style="color: #4CAF50;">GYM BAG</p>
+                    <p class="teach-text" style="color: #4CAF50;">${translateText("GYM BAG")}</p>
                 </div>
 
                 <div class="choices-container" style="display: flex; flex-direction: column; gap: 20px;">
                     ${activity.choices.map(choice => `
                         <button class="choice-card" onclick="handleBagChoice(this, ${choice.correct}, '${choice.image}')" style="width: 250px; display: flex; align-items: center; gap: 15px; padding: 15px;">
                             <img src="${choice.image}" style="width: 80px; height: 80px; object-fit: contain;">
-                            <span class="teach-text">${choice.text}</span>
+                            <span class="teach-text">${translateText(choice.text)}</span>
                         </button>
                     `).join('')}
                 </div>
@@ -1802,7 +2107,7 @@ function handleBagChoice(button, isCorrect, imageUrl) {
         const bag = document.getElementById('gymBag');
         bag.innerHTML = `
             <img src="${imageUrl}" style="width: 150px; height: 150px; animation: bounceIn 0.5s;">
-            <p class="teach-text" style="color: #4CAF50;">Packed!</p>
+            <p class="teach-text" style="color: #4CAF50;">${translateText("Packed!")}</p>
         `;
         bag.style.background = "#e8f5e9";
         bag.style.borderStyle = "solid";
@@ -1833,7 +2138,7 @@ function renderTeachSlide() {
     // standard rendering of text and image
     container.innerHTML = `
         <div class="teach-slide">
-            <p class="teach-text">${slide.text}</p>
+            <p class="teach-text">${translateText(slide.text || '')}</p>
             <div id="imageContainer" style="position:relative; display:inline-block;">
                 <img src="${slide.image}" class="teach-image" id="centralBag">
                 <div id="itemsLayer" style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;"></div>
@@ -1846,7 +2151,7 @@ function renderTeachSlide() {
         const btn = document.createElement('button');
         btn.className = 'nav-btn';
         btn.style = "display:block; margin: 20px auto; background:#ff9800; color:white; font-weight:bold;";
-        btn.innerText = "Check My Bag 🎒";
+        btn.innerText = translateText("Check My Bag 🎒");
         container.appendChild(btn);
 
         btn.onclick = () => {
@@ -1883,7 +2188,7 @@ function revealShowerItems() {
         
         toolEl.innerHTML = `
             <div class="option-icon" style="font-size:30px">${item.icon}</div>
-            <div class="option-text" style="font-size:12px">${item.name}</div>
+            <div class="option-text" style="font-size:12px">${translateText(item.name)}</div>
         `;
         itemsLayer.appendChild(toolEl);
     });
@@ -1940,7 +2245,7 @@ function showActivity() {
         const leftSide = document.createElement('div');
         leftSide.className = 'activity-left';
         leftSide.innerHTML = `
-            <p class="teach-text">${activity.question}</p>
+            <p class="teach-text">${translateText(activity.question)}</p>
             <img src="${activity.leftImage}" class="teach-image">
         `;
 
@@ -1953,7 +2258,7 @@ function showActivity() {
             card.className = 'activity-option';
             card.innerHTML = `
                 <img src="${choice.image}" class="option-image">
-                <p class="option-text">${choice.text}</p>
+                <p class="option-text">${translateText(choice.text)}</p>
             `;
 
             card.onclick = () => {
@@ -2029,7 +2334,7 @@ function renderShowerKitMatch(activity, container) {
         card.className = 'activity-option';
         card.innerHTML = `
             <img src="${choice.image}" class="option-image">
-            <p class="option-text">${choice.text}</p>
+            <p class="option-text">${translateText(choice.text)}</p>
         `;
 
         card.onclick = () => {
@@ -2070,17 +2375,43 @@ function resetPromptTimeout() {
         const activeScreen = document.querySelector('.screen.active');
         if (!activeScreen) return;
 
-        // 2. Find all potential interactive elements on this specific page
-        const targets = activeScreen.querySelectorAll('button, .topic-card, .activity-option, .submodule-card, .gender-card');
-        
-        // 3. If there are elements, pick exactly ONE at random
-        if (targets.length > 0) {
-            const randomIndex = Math.floor(Math.random() * targets.length);
-            const selectedElement = targets[randomIndex];
-            
-            // 4. Apply the animation to just that one button
-            selectedElement.classList.add('inactivity-prompt');
+        const targets = [];
+
+        if (activeScreen.id === 'quizScreen') {
+            const submoduleKey = `submodule${currentState.submodule}`;
+            const topic = content[submoduleKey].topics.find(t => t.id === currentState.topic);
+            const quizData = Array.isArray(topic.quiz) ? topic.quiz[currentState.quizSlide] : topic.quiz;
+            const quizOptions = activeScreen.querySelectorAll('.quiz-option');
+            const correctIndexes = [];
+
+            if (quizData && quizData.type !== "subjective") {
+                quizData.options.forEach((option, index) => {
+                    if (option.correct) {
+                        correctIndexes.push(index);
+                    }
+                });
+            }
+
+            if (correctIndexes.length > 0) {
+                correctIndexes.forEach((index) => {
+                    if (quizOptions[index]) {
+                        targets.push(quizOptions[index]);
+                    }
+                });
+            } else if (quizOptions.length > 0) {
+                targets.push(quizOptions[Math.floor(Math.random() * quizOptions.length)]);
+            }
+        } else {
+            const candidates = activeScreen.querySelectorAll('button, .topic-card, .activity-option, .submodule-card, .gender-card');
+            if (candidates.length > 0) {
+                const randomIndex = Math.floor(Math.random() * candidates.length);
+                targets.push(candidates[randomIndex]);
+            }
         }
+
+        targets.forEach(target => {
+            target.classList.add('inactivity-prompt');
+        });
     }, 2000); 
 }
 
@@ -2095,13 +2426,13 @@ function showQuiz() {
     // Handle both single question object and array of questions
     const quizData = Array.isArray(topic.quiz) ? topic.quiz[currentState.quizSlide] : topic.quiz;
 
-    document.getElementById('quizTitle').textContent = "Quiz Time!";
+    document.getElementById('quizTitle').textContent = translateText("Quiz Time!");
     const quizContent = document.getElementById('quizContent');
     quizContent.innerHTML = '';
 
     const questionText = document.createElement('p');
     questionText.className = 'teach-text';
-    questionText.textContent = quizData.question;
+    questionText.textContent = translateText(quizData.question);
     quizContent.appendChild(questionText);
 
     // Add this check inside your showQuiz function where images are handled
@@ -2145,7 +2476,7 @@ if (quizData.image) {
 
         card.innerHTML = `
             ${choice.icon ? `<div class="option-icon" style="font-size:50px; margin-bottom: 10px;">${choice.icon}</div>` : ''}
-            <div class="option-text" style="font-weight: bold; font-size: 20px;">${choice.text}</div>
+            <div class="option-text" style="font-weight: bold; font-size: 20px;">${translateText(choice.text)}</div>
         `;
 
         // Add a slight "pop" effect when clicking
@@ -2184,7 +2515,7 @@ function handleQuizTransition(topic) {
     // UPDATED LOGIC: Trigger for EVERY topic/feature when the last question is answered
     if (isLastQuestion) {
         // Optional: Play a congratulatory voice message
-        const msg = new SpeechSynthesisUtterance("Congratulations! You completed this topic!");
+        const msg = new SpeechSynthesisUtterance(translateText("Congratulations! You completed this topic!"));
         window.speechSynthesis.speak(msg);
         
         // Wait for 2 seconds to show stars/feedback, then jump back to main page
@@ -2227,7 +2558,7 @@ function completeActivityAndGoHome() {
     triggerStars();
     
     // Voice feedback
-    const msg = new SpeechSynthesisUtterance("Great job! You finished this topic.");
+    const msg = new SpeechSynthesisUtterance(translateText("Great job! You finished this topic."));
     window.speechSynthesis.speak(msg);
     
     // Wait 2 seconds then go home

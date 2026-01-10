@@ -936,6 +936,9 @@ function showTeachContent() {
                 `;
                 card.onclick = () => {
                     currentState.gender = choice.gender; // Sets 'male' or 'female'
+                    if (typeof playWordSound === 'function') {
+                        playWordSound(choice.label);
+                    }
                     advanceTeachSlide();
                 };
                 grid.appendChild(card);

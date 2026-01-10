@@ -264,6 +264,7 @@ body::after {
     font-size: 20px;
     color: var(--text);
     font-weight: 600;
+    position: relative;
 }
 
 .topic-card:hover {
@@ -273,13 +274,18 @@ body::after {
 }
 
 .topic-card.completed {
-    background: linear-gradient(135deg, #36d1a8, #1fba95);
-    color: white;
+    background: #e6f7ef;
+    border-color: #32c997;
+    color: var(--text);
 }
 
 .topic-card.completed::after {
-    content: ' ✓';
-    font-size: 28px;
+    content: '✔️';
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 22px;
+    opacity: 0.85;
 }
 
 /* Content Area */
@@ -322,6 +328,7 @@ body::after {
     margin: 20px auto;
     display: block;
     box-shadow: var(--shadow-soft);
+    object-fit: contain;
 }
 
 .teach-text {
@@ -329,6 +336,33 @@ body::after {
     color: var(--muted);
     margin: 20px 0;
     line-height: 1.6;
+}
+
+.body-labels {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.body-label {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.92);
+    border: 2px solid #cfe6f2;
+    border-radius: 999px;
+    padding: 8px 14px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    box-shadow: 0 8px 16px rgba(31, 45, 61, 0.12);
+    cursor: pointer;
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.body-label:focus,
+.body-label:hover {
+    transform: translate(-50%, -50%) scale(1.05);
+    box-shadow: 0 10px 20px rgba(47, 123, 246, 0.2);
 }
 
 /* Activity Content */
@@ -358,11 +392,12 @@ body::after {
 .activity-option.selected {
     background: #def8f2;
     border-color: var(--secondary);
-    box-shadow: 0 0 20px rgba(25, 184, 154, 0.35);
+    box-shadow: 0 0 18px rgba(25, 184, 154, 0.25);
 }
 
 .activity-option.wrong {
-    animation: shake 0.5s;
+    border-color: #c9d6e6;
+    background: #f4f6fb;
 }
 
 @keyframes shake {
@@ -372,21 +407,25 @@ body::after {
 }
 
 .activity-option.correct {
-    background: #bff3e6;
-    border-color: var(--secondary);
-    animation: glow 0.8s;
+    background: #e2f9f1;
+    border-color: #32c997;
+    animation: glow 0.6s;
 }
 
 @keyframes glow {
-    0%, 100% { box-shadow: 0 0 20px rgba(76, 175, 80, 0.5); }
-    50% { box-shadow: 0 0 40px rgba(76, 175, 80, 0.9); }
+    0%, 100% { box-shadow: 0 0 14px rgba(50, 201, 151, 0.35); }
+    50% { box-shadow: 0 0 22px rgba(50, 201, 151, 0.55); }
 }
 
 .option-image {
     max-width: 100%;
     max-height: 200px;
+    width: 100%;
+    height: auto;
     border-radius: 12px;
     margin-bottom: 15px;
+    object-fit: cover;
+    object-position: center;
 }
 
 .option-text {
@@ -427,6 +466,11 @@ body::after {
     box-shadow: var(--shadow-soft);
 }
 
+.quiz-option.selected {
+    border-color: var(--primary);
+    box-shadow: 0 0 16px rgba(47, 123, 246, 0.2);
+}
+
 .quiz-option:hover {
     transform: translateY(-6px);
     border-color: var(--primary);
@@ -448,20 +492,20 @@ body::after {
 }
 
 .quiz-option.wrong {
-    animation: shake 0.5s;
     border-color: #e1e7f0;
+    background: #f4f6fb;
 }
 
 .quiz-option.correct {
-    background: #bff3e6;
-    border-color: var(--secondary);
-    animation: correctAnswer 0.8s;
+    background: #e2f9f1;
+    border-color: #32c997;
+    animation: correctAnswer 0.6s;
 }
 
 @keyframes correctAnswer {
     0% { transform: scale(1); }
-    50% { transform: scale(1.15); }
-    100% { transform: scale(1.1); }
+    50% { transform: scale(1.04); }
+    100% { transform: scale(1.02); }
 }
 
 /* Next Button */
@@ -1058,7 +1102,7 @@ body::after {
 
 .shake {
     animation: shake 0.4s ease-in-out !important;
-    border-color: #ff4444 !important; /* Turns red briefly */
+    border-color: #c9d6e6 !important; /* Neutral outline */
 }
 
 .activity-wrapper {
@@ -1133,12 +1177,10 @@ body::after {
 }
 
 .activity-option.selected {
-    /* Existing styles plus: */
     z-index: 10;
-    background: var(--surface);
-    border-radius: var(--radius-sm);
-    padding: 10px;
-    box-shadow: var(--shadow-soft);
+    background: #def8f2;
+    border-color: var(--secondary);
+    box-shadow: 0 0 18px rgba(25, 184, 154, 0.25);
 }
 
 /* Container for the tools on the sides */
@@ -1210,17 +1252,19 @@ body::after {
 }
 
 .activity-option.correct {
-    background: #bff3e6;
-    border-color: var(--secondary);
-    animation: glow 0.8s;
+    background: #e2f9f1;
+    border-color: #32c997;
+    animation: glow 0.6s;
 }
 
 /* Ensure images fit well in the boxes */
 .option-image {
     max-width: 150px;
+    width: 100%;
     height: auto;
     display: block;
     margin: 0 auto 10px;
+    object-fit: cover;
 }
 
 /* Add this to your styles.css */
@@ -1297,6 +1341,7 @@ body::after {
     min-width: 200px; /* Ensures the button is wide enough for the circle */
     min-height: 250px; /* Adjusts height for image + text */
     box-shadow: var(--shadow-soft);
+    position: relative;
 }
 
 .topic-card:hover {

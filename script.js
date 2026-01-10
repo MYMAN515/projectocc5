@@ -21,7 +21,7 @@ let currentLanguage = 'en';
 const translations = {
     ms: {
         "Language": "Bahasa",
-        "Welcome here!": "Selamat datang!",
+        "Welcome to Puberty Buddy!": "Selamat datang ke Puberty Buddy!",
         "Physical and Emotional Changes": "Perubahan Fizikal dan Emosi",
         "Hygiene & Self-Care Routine": "Kebersihan & Rutin Penjagaan Diri",
         "Confidence, Self-Acceptance and Lifestyle": "Keyakinan, Penerimaan Diri dan Gaya Hidup",
@@ -32,8 +32,9 @@ const translations = {
         "Choose me!": "Pilih saya!",
         "Boy": "Budak lelaki",
         "Your body changes as you grow!": "Badan kamu berubah apabila membesar!",
-        "You grow taller": "Kamu menjadi lebih tinggi",
-        "Hair grows on your body": "Bulu tumbuh pada badan kamu",
+        "Body changes": "Perubahan badan",
+        "Taller": "Lebih tinggi",
+        "Body hair": "Bulu badan",
         "Click me to see changes!": "Klik saya untuk lihat perubahan!",
         "Growing Taller": "Semakin tinggi",
         "Growing Body Hair": "Bulu badan tumbuh",
@@ -42,14 +43,14 @@ const translations = {
         "Mood Tracker": "Penjejak Emosi",
         "It's okay to have any feeling": "Tidak mengapa mempunyai apa-apa perasaan",
         "Tap your mood now!": "Sentuh perasaan kamu sekarang!",
-        "Happy": "Gembira",
-        "Angry": "Marah",
-        "Sad": "Sedih",
+        "I feel happy": "Saya rasa gembira",
+        "I feel angry": "Saya rasa marah",
+        "I feel sad": "Saya rasa sedih",
         "Touch your forehead. How does your skin feel to your fingers?": "Sentuh dahi kamu. Bagaimana rasa kulit kamu?",
         "Smooth and Dry!": "Licin dan kering!",
         "Silky or Oily": "Licin atau berminyak",
         "Bumpy and Itchy": "Kasar dan gatal",
-        "How much power does your 'Body Battery' have right now?": "Berapa banyak tenaga dalam “Bateri Badan” kamu sekarang?",
+        "How much power do you have now?": "Berapa banyak tenaga kamu sekarang?",
         "Timeline Matching Activity": "Aktiviti Padanan Garis Masa",
         "Changes happen over time, especially during puberty": "Perubahan berlaku mengikut masa, terutamanya semasa akil baligh",
         "Before puberty: You are still a child": "Sebelum akil baligh: Kamu masih kanak-kanak",
@@ -91,17 +92,18 @@ const translations = {
         "Strong": "Kuat",
         "Special": "Istimewa",
         "Amazing": "Hebat",
-        "Which shows positive body image?": "Yang manakah menunjukkan imej badan positif?",
+        "+ Which shows positive body image?": "+ Yang manakah menunjukkan imej badan positif?",
         "My body is strong": "Badan saya kuat",
         "My body is bad": "Badan saya tidak bagus",
         "What I Like About Me": "Apa yang Saya Suka Tentang Diri Saya",
         "I have special talents!": "Saya ada bakat istimewa!",
-        "What do you see in the mirror today that makes you smile?": "Apa yang kamu lihat di cermin hari ini yang membuat kamu tersenyum?",
+        "Look in the mirror": "Lihat cermin",
+        "What makes you smile? +": "Apa yang membuat kamu tersenyum? +",
         "My Cool Hair": "Rambut saya yang keren",
         "My Strong Legs": "Kaki saya yang kuat",
         "My Happy Eyes": "Mata saya yang gembira",
         "My Favourite Shirt": "Baju kegemaran saya",
-        "Today, I did a great job at...": "Hari ini, saya berjaya dalam...",
+        "+ Today, I did a great job at...": "+ Hari ini, saya berjaya dalam...",
         "Helping others": "Menolong orang lain",
         "Finishing my homework": "Menyiapkan kerja rumah",
         "Trying a new food": "Mencuba makanan baru",
@@ -138,7 +140,7 @@ const translations = {
     },
     zh: {
         "Language": "语言",
-        "Welcome here!": "欢迎来到这里！",
+        "Welcome to Puberty Buddy!": "欢迎来到 Puberty Buddy！",
         "Physical and Emotional Changes": "身体与情绪变化",
         "Hygiene & Self-Care Routine": "卫生与自我护理",
         "Confidence, Self-Acceptance and Lifestyle": "自信、自我接纳与生活方式",
@@ -149,8 +151,9 @@ const translations = {
         "Choose me!": "选择我！",
         "Boy": "男孩",
         "Your body changes as you grow!": "你的身体会随着成长而变化！",
-        "You grow taller": "你会长高",
-        "Hair grows on your body": "身上会长出毛发",
+        "Body changes": "身体变化",
+        "Taller": "更高",
+        "Body hair": "体毛",
         "Click me to see changes!": "点击我查看变化！",
         "Growing Taller": "长高",
         "Growing Body Hair": "长出体毛",
@@ -159,14 +162,14 @@ const translations = {
         "Mood Tracker": "情绪记录",
         "It's okay to have any feeling": "有任何感受都没关系",
         "Tap your mood now!": "点击你现在的心情！",
-        "Happy": "开心",
-        "Angry": "生气",
-        "Sad": "伤心",
+        "I feel happy": "我感到开心",
+        "I feel angry": "我感到生气",
+        "I feel sad": "我感到伤心",
         "Touch your forehead. How does your skin feel to your fingers?": "摸摸你的额头。皮肤摸起来怎么样？",
         "Smooth and Dry!": "光滑又干爽！",
         "Silky or Oily": "光滑或油油的",
         "Bumpy and Itchy": "粗糙并发痒",
-        "How much power does your 'Body Battery' have right now?": "你的“身体电量”现在有多少？",
+        "How much power do you have now?": "你现在有多少能量？",
         "Timeline Matching Activity": "时间线配对活动",
         "Changes happen over time, especially during puberty": "变化会随着时间发生，尤其是青春期",
         "Before puberty: You are still a child": "青春期前：你还是孩子",
@@ -208,17 +211,18 @@ const translations = {
         "Strong": "强壮",
         "Special": "特别",
         "Amazing": "很棒",
-        "Which shows positive body image?": "哪个显示积极的身体形象？",
+        "+ Which shows positive body image?": "+ 哪个显示积极的身体形象？",
         "My body is strong": "我的身体很强壮",
         "My body is bad": "我的身体不好",
         "What I Like About Me": "我喜欢自己的地方",
         "I have special talents!": "我有特别的才能！",
-        "What do you see in the mirror today that makes you smile?": "今天你在镜子里看到什么让你微笑？",
+        "Look in the mirror": "看看镜子",
+        "What makes you smile? +": "什么让你微笑？+",
         "My Cool Hair": "我的酷发型",
         "My Strong Legs": "我强壮的腿",
         "My Happy Eyes": "我开心的眼睛",
         "My Favourite Shirt": "我最喜欢的衣服",
-        "Today, I did a great job at...": "今天我做得很好的是……",
+        "+ Today, I did a great job at...": "+ 今天我做得很好的是……",
         "Helping others": "帮助他人",
         "Finishing my homework": "完成作业",
         "Trying a new food": "尝试新食物",
@@ -286,27 +290,32 @@ const content = {
 						]
 					},
 					{
-						text: "Your body changes as you grow!",
+						text: "Body changes",
 						image: {
 							male: "https://i.pinimg.com/564x/f8/fc/59/f8fc59c8eccc0c32774606ed2f3407c1.jpg"
 						}
 					},
 					{
-						text: "You grow taller",
+						text: "Taller",
 						image: {
 							male: "images/HeightGrowthCartoonMale.jpg"
 						}
 					},
 					{
-						text: "Hair grows on your body",
+						text: "Body hair",
 						image: {
 							male: "images/bodyHairMale.jpeg"
 						}
 					},
 					{
+						type: "bodyLabels",
 						image: {
-							male: "images/Screenshot 2026-01-10 042346.png",
-						}, 
+							male: "images/puberty-chestMale.jpg"
+						},
+						labels: [
+							{ text: "Taller", x: 18, y: 18 },
+							{ text: "Body hair", x: 62, y: 42 }
+						]
 					}
 				],
                 activity: {
@@ -343,7 +352,11 @@ const content = {
 				activity: {
 					instruction: "Tap your mood now!",
 					type: "multiSelect", // or a valid activity type
-					items: [{ text: "Happy", image: "images/Screenshot_20260108_233847_Gallery.jpg" }, { text: "Angry", image: "images/Screenshot_20260108_233740_Gallery.jpg" }, { text: "Sad", image: "images/Screenshot_20260108_233823_Gallery.jpg" }]
+					items: [
+						{ text: "I feel happy", image: "images/Screenshot_20260108_233847_Gallery.jpg", soundKey: "happy" },
+						{ text: "I feel angry", image: "images/Screenshot_20260108_233740_Gallery.jpg", soundKey: "angry" },
+						{ text: "I feel sad", image: "images/Screenshot_20260108_233823_Gallery.jpg", soundKey: "sad" }
+					]
 				},
 				quiz: [{
 					type: "subjective", // Special type for no right/wrong
@@ -357,7 +370,7 @@ const content = {
 				}, 
 				{
 					type: "subjective", // Special type for no right/wrong
-					question: "How much power does your 'Body Battery' have right now?",
+					question: "How much power do you have now?",
 					image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaUXoeVwvxP41cJ-uWPp4AmUjTVAUEi87tyQ&s", // The single large image
 					options: [
 						{ text: "100%", image: "https://www.mentalup.co/img/blog/running-games-for-kids-12.jpg" },
@@ -553,7 +566,7 @@ const content = {
                     ]
                 },
                 quiz: {
-                    question: "Which shows positive body image?",
+                    question: "+ Which shows positive body image?",
                     options: [
                         { text: "My body is strong", icon: "💪", correct: true },
                         { text: "My body is bad", icon: "❌", correct: false }
@@ -565,24 +578,22 @@ const content = {
                 title: "What I Like About Me",
 				image: "https://media.istockphoto.com/id/1452314042/vector/happy-boy-hugging-himself-with-heart-icons-self-care-self-love.jpg?s=612x612&w=0&k=20&c=lqroMX9fXCWxJ5qZfpnJdUSsf8fv3Bhhwt9I_57IPuU=",
                 teach: [
-                    {
-                        text: "I have special talents!",
-                        image: "https://img.freepik.com/premium-vector/cartoon-boy-looking-his-reflection-mirror_1120557-36298.jpg"
-                    }
+					{
+						text: "Look in the mirror",
+						image: "https://t4.ftcdn.net/jpg/01/98/91/57/360_F_198915705_2dm0Qri709HBBRlfrMtwphewocmBapuT.jpg"
+					}
                 ],
                 activity: {
-                    instruction: "What do you see in the mirror today that makes you smile?",
+                    instruction: "What makes you smile? +",
                     type: "multiSelect",
-					image: "https://t4.ftcdn.net/jpg/01/98/91/57/360_F_198915705_2dm0Qri709HBBRlfrMtwphewocmBapuT.jpg",
                     items: [
                         { text: "My Cool Hair", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoASVH4k04RzFcJ_82hz389VZTtGhl9wksBw&s" },
                         { text: "My Strong Legs", image: "https://ik.imagekit.io/shortpedia/Voices/wp-content/uploads/2020/10/Calf-Raises.jpg" },
-                        { text: "My Happy Eyes", image: "https://previews.123rf.com/images/denisnata/denisnata1803/denisnata180300001/96973751-close-up-front-portrait-of-beautiful-happy-woman-face-with-gray-eyes.jpg" },
-                        { text: "My Favourite Shirt", image: "https://xcdn.next.co.uk/common/items/default/default/itemimages/3_4Ratio/product/lge/D33003s.jpg?im=Resize,width=750" }
+                        { text: "My Happy Eyes", image: "https://previews.123rf.com/images/denisnata/denisnata1803/denisnata180300001/96973751-close-up-front-portrait-of-beautiful-happy-woman-face-with-gray-eyes.jpg" }
                     ]
                 },
                 quiz: {
-                    question: "Today, I did a great job at...",
+                    question: "+ Today, I did a great job at...",
                     options: [
                         { text: "Helping others", image: "https://www.entrepreneur.com/wp-content/uploads/sites/2/2016/08/20160813000120-GettyImages-486493061.jpeg", correct: true },
 						{ text: "Finishing my homework", image: "https://img.freepik.com/premium-photo/happy-boy-finished-homework_128867-24.jpg", correct: true },
@@ -668,11 +679,6 @@ const content = {
 							text: "Candy", 
 							correct: false, 
 							image: "images/candies_16671618.png" 
-						},
-						{ 
-							text: "Burger", 
-							correct: false, 
-							image: "https://cdn-icons-png.flaticon.com/512/3075/3075977.png" 
 						}
 					]
 				},
@@ -880,9 +886,8 @@ function showTopicSelection() {
         card.appendChild(titleText);
         // --- UPDATED CODE END ---
 
-        // Keep your existing exclusion logic for the green color
-        const isExcludedSubmodule = [1, 2, 3].includes(currentState.submodule);
-        if (currentState.progress[submoduleKey].includes(topic.id) && !isExcludedSubmodule) {
+        // Show completion styling whenever a topic is finished.
+        if (currentState.progress[submoduleKey].includes(topic.id)) {
             card.classList.add('completed');
         }
         
@@ -1022,6 +1027,36 @@ function showTeachContent() {
                     (i < 2 ? leftTools : rightTools).appendChild(toolEl);
                 });
             };
+        }
+
+        else if (slide.type === "bodyLabels") {
+            // Visual labels placed directly on the body image for quick scanning.
+            const labelWrapper = document.createElement('div');
+            labelWrapper.className = 'body-labels';
+
+            const img = document.createElement('img');
+            if (typeof slide.image === 'object' && slide.image !== null) {
+                const gender = currentState.gender || 'male';
+                img.src = slide.image[gender];
+            } else {
+                img.src = slide.image;
+            }
+            img.className = 'teach-image';
+            img.alt = translateText("Body changes");
+            labelWrapper.appendChild(img);
+
+            slide.labels.forEach(label => {
+                const badge = document.createElement('button');
+                badge.type = 'button';
+                badge.className = 'body-label';
+                badge.style.top = `${label.y}%`;
+                badge.style.left = `${label.x}%`;
+                badge.textContent = translateText(label.text);
+                badge.setAttribute('aria-label', translateText(label.text));
+                labelWrapper.appendChild(badge);
+            });
+
+            slideDiv.appendChild(labelWrapper);
         }
 
         // --- TYPE C: STRIP / CAROUSEL ---
@@ -1299,8 +1334,8 @@ function renderEmotionMatch(activity, container) {
                     }
                 }, 1000);
             } else {
-                card.classList.add('wrong');
-                setTimeout(() => card.classList.remove('wrong'), 500);
+                card.classList.add('selected', 'wrong');
+                setTimeout(() => card.classList.remove('wrong', 'selected'), 700);
             }
         });
         
@@ -1340,8 +1375,8 @@ function renderSelectMultiple(activity, container) {
         
         let selected = false;
         option.addEventListener('click', () => {
+            option.classList.add('selected');
             if (!selected && item.correct) {
-                option.classList.add('selected');
                 selected = true;
                 selectedCorrect++;
                 
@@ -1352,7 +1387,9 @@ function renderSelectMultiple(activity, container) {
                 }
             } else if (!item.correct) {
                 option.classList.add('wrong');
-                setTimeout(() => option.classList.remove('wrong'), 500);
+                setTimeout(() => {
+                    option.classList.remove('wrong', 'selected');
+                }, 700);
             }
         });
         
@@ -1409,8 +1446,8 @@ function renderTimeline(activity, container) {
                     completeActivityAndGoToQuiz(); // GO TO QUIZ FIRST
                 }, 500);
             } else {
-                option.classList.add('wrong');
-                setTimeout(() => option.classList.remove('wrong'), 500);
+                option.classList.add('selected', 'wrong');
+                setTimeout(() => option.classList.remove('wrong', 'selected'), 700);
             }
         });
         optionsDiv.appendChild(option);
@@ -1580,10 +1617,10 @@ function renderMultiSelect(activity, container) {
             // 1. Toggle the visual selection
             option.classList.toggle('selected');
             
-            // 2. NEW: Play the sound effect based on the text (Happy, Sad, Angry)
-            // This will look for sounds like "happy.mp3" in your sounds folder
+            // 2. Play sound effect with explicit keys for consistent labeling
             if (typeof playWordSound === 'function') {
-                playWordSound(item.text.toLowerCase());
+                const soundKey = item.soundKey || item.text;
+                playWordSound(soundKey.toLowerCase());
             }
 
             // 3. Show the next button once at least one is selected
@@ -1622,13 +1659,13 @@ function renderCompare(activity, container) {
         
         option.addEventListener('click', () => {
             if (item.correct) {
-                option.classList.add('correct');
+                option.classList.add('selected', 'correct');
                 setTimeout(() => {
                     completeActivityAndGoToQuiz(); // GO TO QUIZ FIRST
                 }, 800);
             } else {
-                option.classList.add('wrong');
-                setTimeout(() => option.classList.remove('wrong'), 500);
+                option.classList.add('selected', 'wrong');
+                setTimeout(() => option.classList.remove('wrong', 'selected'), 700);
             }
         });
         
@@ -1697,6 +1734,10 @@ function goToQuiz() {
         optionDiv.appendChild(text);
         
         optionDiv.addEventListener('click', () => {
+            document.querySelectorAll('.quiz-option').forEach(opt => {
+                opt.classList.remove('selected', 'wrong');
+            });
+            optionDiv.classList.add('selected');
             const isCorrect = quizData.type === "subjective" ? true : option.correct;
             handleQuizAnswer(isCorrect, optionDiv);
         });
@@ -1740,7 +1781,7 @@ function handleQuizAnswer(isCorrect, element) {
         }
     } else {
         element.classList.add('wrong');
-        setTimeout(() => element.classList.remove('wrong'), 500);
+        setTimeout(() => element.classList.remove('wrong'), 700);
     }
 }
 
@@ -2035,15 +2076,15 @@ function renderSequenceActivity(activity, container) {
                 }, 2000);
 
             } else {
-                card.classList.add('wrong');
-                card.style.backgroundColor = '#ff6b6b'; 
-                card.style.borderColor = '#c0392b';
+                card.classList.add('selected', 'wrong');
+                card.style.backgroundColor = '#f4f6fb'; 
+                card.style.borderColor = '#c9d6e6';
                 setTimeout(() => {
-                    card.classList.remove('wrong');
+                    card.classList.remove('wrong', 'selected');
                     card.style.backgroundColor = '#fff';
                     card.style.borderColor = '#eee';
                     card.style.color = '#000';
-                }, 500);
+                }, 700);
             }
         };
         optionsDiv.appendChild(card);
@@ -2283,6 +2324,7 @@ function showActivity() {
             `;
 
             card.onclick = () => {
+                card.classList.add('selected');
                 if (choice.correct) {
                     card.classList.add('correct');
                     triggerStars(); // Shows success-stars
@@ -2291,7 +2333,7 @@ function showActivity() {
                     }, 2500);
                 } else {
                     card.classList.add('wrong');
-                    setTimeout(() => card.classList.remove('wrong'), 500);
+                    setTimeout(() => card.classList.remove('wrong', 'selected'), 700);
                 }
             };
             rightSide.appendChild(card);
@@ -2365,14 +2407,14 @@ function renderShowerKitMatch(activity, container) {
             if (choice.correct) {
                 // Play correct sound
                 playCorrectSound();
-                card.classList.add('correct');
+                card.classList.add('selected', 'correct');
                 triggerStars();
                 setTimeout(() => goHome(), 2500);
             } else {
                 // Play wrong sound
                 playWrongSound();
-                card.classList.add('wrong');
-                setTimeout(() => card.classList.remove('wrong'), 500);
+                card.classList.add('selected', 'wrong');
+                setTimeout(() => card.classList.remove('wrong', 'selected'), 700);
                 // Restart timer if they got it wrong so they get a hint again
                 resetPromptTimeout();
             }
@@ -2508,12 +2550,12 @@ if (quizData.image) {
                 handleQuizTransition(topic);
             } else {
                 if (choice.correct) {
-                    card.classList.add('correct');
+                    card.classList.add('selected', 'correct');
                     handleQuizTransition(topic);
                 } else {
-                    card.classList.add('wrong');
+                    card.classList.add('selected', 'wrong');
                     setTimeout(() => {
-                        card.classList.remove('wrong');
+                        card.classList.remove('wrong', 'selected');
                         card.style.transform = 'scale(1)';
                     }, 500);
                 }
@@ -2678,7 +2720,9 @@ function playWordSound(word) {
         const soundFile = soundMap[word.toLowerCase()];
         if (soundFile) {
             const audio = new Audio(soundFile);
-            audio.volume = 0.7;
+            // Boost core kit sounds for clearer audio across devices.
+            const volumeMap = { soap: 1, towel: 1 };
+            audio.volume = volumeMap[word.toLowerCase()] ?? 0.7;
             audio.play();
         }
     } catch (e) {
@@ -2710,11 +2754,11 @@ function triggerHint() {
         "Which picture shows a body change during puberty?": "Growing Taller",
         "Choose me!": "Boy",
         "Touch your forehead. How does your skin feel to your fingers?": "Smooth and Dry!",
-        "How much power does your 'Body Battery' have right now?": "100%",
+        "How much power do you have now?": "100%",
         "When does body hair appear?": "After Puberty",
         "When does a person have short legs?": "Before Puberty",
         "Which is the essential kit in taking shower?": "Soap",
-        "Which shows positive body image?": "My body is strong",
+        "+ Which shows positive body image?": "My body is strong",
         "What does sleep give you?": "Energy",
         "Tap the HEALTHY foods!": ["Vegetables", "Fruits"], 
         "Which food help you grow strong?": "Vegetables"

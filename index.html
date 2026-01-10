@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -37,21 +38,7 @@
         
         <!-- HOMEPAGE -->
         <div id="homepage" class="screen active">
-            <h1 class="title" data-i18n="Welcome to Puberty Buddy!">Welcome to Puberty Buddy!</h1>
-            <div class="submodule-grid">
-                <button class="submodule-card" data-submodule="1">
-                    <img src="https://thumbs.dreamstime.com/b/smiley-emoji-group-vector-design-emojis-yellow-smiley-face-friends-happy-together-facial-expression-friendship-design-186816457.jpg" class="card-image">
-                    <div class="card-title" data-i18n="Physical and Emotional Changes">Physical and Emotional Changes</div>
-                </button>
-                <button class="submodule-card" data-submodule="2">
-                    <img src="https://media.cnn.com/api/v1/images/stellar/prod/gettyimages-71929509.jpg?c=original" class="card-image">
-                    <div class="card-title" data-i18n="Hygiene & Self-Care Routine">Hygiene & Self-Care Routine</div>
-                </button>
-                <button class="submodule-card" data-submodule="3">
-                    <img src="https://thumbs.dreamstime.com/b/father-son-child-draw-heart-shape-mirror-preschooler-shaving-foam-playing-bathroom-60099995.jpg" class="card-image">
-					<div class="card-title" data-i18n="Confidence, Self-Acceptance and Lifestyle">Confidence, Self-Acceptance and Lifestyle</div>
-                </button>
-            </div>
+            <div id="homeRoot"></div>
         </div>
 
         <!-- SUBMODULE SELECTION SCREEN -->
@@ -110,6 +97,99 @@
         <div class="success-stars">⭐✨🌟</div>
     </div>
 
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        const submodules = [
+            {
+                id: 1,
+                title: 'Physical and Emotional Changes',
+                description: 'Body updates + mood magic. You are a growing superhero!',
+                image: 'https://thumbs.dreamstime.com/b/smiley-emoji-group-vector-design-emojis-yellow-smiley-face-friends-happy-together-facial-expression-friendship-design-186816457.jpg',
+                tag: 'Wiggle & Giggle'
+            },
+            {
+                id: 2,
+                title: 'Hygiene & Self-Care Routine',
+                description: 'Fresh, clean, and ready to sparkle. Bubbles are tiny party hats!',
+                image: 'https://media.cnn.com/api/v1/images/stellar/prod/gettyimages-71929509.jpg?c=original',
+                tag: 'Splash Squad'
+            },
+            {
+                id: 3,
+                title: 'Confidence, Self-Acceptance and Lifestyle',
+                description: 'Kind thoughts, brave choices, and high-fives for you.',
+                image: 'https://thumbs.dreamstime.com/b/father-son-child-draw-heart-shape-mirror-preschooler-shaving-foam-playing-bathroom-60099995.jpg',
+                tag: 'Bravery Boost'
+            }
+        ];
+
+        function HomePage() {
+            return (
+                <div className="home-wrap container-xxl">
+                    <section className="home-hero">
+                        <div className="hero-text">
+                            <span className="hero-badge" data-i18n="heroBadge">🧠 Friendly, funny learning</span>
+                            <h1 className="title" data-i18n="Welcome to Puberty Buddy!">Welcome to Puberty Buddy!</h1>
+                            <p className="hero-subtitle" data-i18n="heroSubtitle">
+                                Big feelings? No worries. We learn with giggles, tiny steps, and high-fives.
+                            </p>
+                            <div className="hero-tip" data-i18n="heroTip">
+                                Tip: Want a break? Take three slow breaths and do a tiny wiggle dance. 🐥
+                            </div>
+                        </div>
+                        <div className="hero-mascot" aria-hidden="true">
+                            <div className="mascot-face">
+                                <span className="mascot-emoji">🦄</span>
+                            </div>
+                            <div className="mascot-bubble" data-i18n="mascotBubble">
+                                Hi! I’m Buddy. I love jokes and learning!
+                            </div>
+                        </div>
+                    </section>
+
+                    <section className="comfort-row">
+                        <div className="comfort-card">
+                            <div className="comfort-icon">🧩</div>
+                            <div className="comfort-title" data-i18n="comfortTitle1">Choose your speed</div>
+                            <p data-i18n="comfortText1">Tap, pause, and replay as much as you like.</p>
+                        </div>
+                        <div className="comfort-card">
+                            <div className="comfort-icon">🎧</div>
+                            <div className="comfort-title" data-i18n="comfortTitle2">Calm colors</div>
+                            <p data-i18n="comfortText2">Soft shapes and clear steps help you feel safe.</p>
+                        </div>
+                        <div className="comfort-card">
+                            <div className="comfort-icon">😂</div>
+                            <div className="comfort-title" data-i18n="comfortTitle3">Funny moments</div>
+                            <p data-i18n="comfortText3">Silly tips keep learning light and happy.</p>
+                        </div>
+                    </section>
+
+                    <section className="submodule-section">
+                        <h2 className="section-title" data-i18n="chooseAdventure">Choose your adventure</h2>
+                        <div className="submodule-grid">
+                            {submodules.map((module) => (
+                                <button key={module.id} className="submodule-card" data-submodule={module.id}>
+                                    <div className="card-tag">{module.tag}</div>
+                                    <img src={module.image} alt="" className="card-image" />
+                                    <div className="card-title" data-i18n={module.title}>
+                                        {module.title}
+                                    </div>
+                                    <p className="card-description">{module.description}</p>
+                                    <div className="card-cta" data-i18n="chooseMe">Choose me!</div>
+                                </button>
+                            ))}
+                        </div>
+                    </section>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('homeRoot'));
+        root.render(<HomePage />);
+    </script>
     <script src="script.js"></script>
 </body>
 </html>

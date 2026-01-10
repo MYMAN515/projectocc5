@@ -1398,18 +1398,50 @@ select:focus-visible,
     box-shadow: var(--shadow-soft);
     text-align: center;
     display: inline-block; /* Works with nowrap */
+    position: relative;
 }
 
 .strip-step.is-clickable {
     cursor: pointer;
     border: 2px solid rgba(47, 123, 246, 0.25);
     transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    animation: washFacePulse 1.8s ease-in-out infinite;
 }
 
 .strip-step.is-clickable:hover {
     transform: translateY(-3px);
     box-shadow: var(--shadow-strong);
     border-color: rgba(47, 123, 246, 0.5);
+}
+
+.click-hint {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(47, 123, 246, 0.12);
+    color: var(--primary-strong);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 6px 10px;
+    border-radius: 999px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    box-shadow: 0 6px 14px rgba(47, 123, 246, 0.16);
+}
+
+@keyframes washFacePulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(47, 123, 246, 0.2);
+    }
+    50% {
+        transform: scale(1.03);
+        box-shadow: 0 0 18px rgba(47, 123, 246, 0.25);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(47, 123, 246, 0.2);
+    }
 }
 
 /* 3. Ensure images fill the wider box properly */

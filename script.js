@@ -348,7 +348,7 @@ const content = {
 				quiz: [{
 					type: "subjective", // Special type for no right/wrong
 					question: "Touch your forehead. How does your skin feel to your fingers?",
-					image: "https://img.freepik.com/free-photo/frustrated-woman-with-hand-forehead_74855-2228.jpg", // The single large image
+					image: "images/kais.jpg", // The single large image
 					options: [
 						{ text: "Smooth and Dry!", image: "https://img.freepik.com/free-photo/close-up-portrait-gorgeous-young-woman_273609-40846.jpg?semt=ais_hybrid&w=740&q=80" },
 						{ text: "Silky or Oily", image: "https://img.freepik.com/free-photo/angry-pretty-woman-looking-camera-frowning_1262-18368.jpg?semt=ais_hybrid&w=740&q=80" },
@@ -2719,4 +2719,5 @@ function triggerHint() {
     }
     // Note: The "Random Hint" logic has been removed to ensure 
     // hints are only provided for correct answers.
+
 }

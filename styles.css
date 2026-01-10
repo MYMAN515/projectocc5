@@ -1404,12 +1404,49 @@ select:focus-visible,
     cursor: pointer;
     border: 2px solid rgba(47, 123, 246, 0.25);
     transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    position: relative;
+    animation: tapPulse 1.8s ease-in-out infinite;
 }
 
 .strip-step.is-clickable:hover {
     transform: translateY(-3px);
     box-shadow: var(--shadow-strong);
     border-color: rgba(47, 123, 246, 0.5);
+}
+
+.strip-step.is-clickable::after {
+    content: "Tap";
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #fff;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: 999px;
+    box-shadow: 0 6px 14px rgba(47, 123, 246, 0.25);
+}
+
+.strip-step.is-clickable:focus-visible {
+    animation-play-state: paused;
+}
+
+@keyframes tapPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(47, 123, 246, 0.25);
+        transform: translateY(0);
+    }
+    50% {
+        box-shadow: 0 0 0 10px rgba(47, 123, 246, 0);
+        transform: translateY(-2px);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(47, 123, 246, 0);
+        transform: translateY(0);
+    }
 }
 
 /* 3. Ensure images fill the wider box properly */

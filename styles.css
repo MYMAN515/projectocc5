@@ -1,93 +1,58 @@
-/* Global Styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-	overflow: ;
 }
 
 body {
-    font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', cursive, sans-serif;
-    background-color: #7acedc; /* Soft light gray-blue */
+    font-family: 'Arial Rounded MT Bold', Arial, sans-serif;
+    background: linear-gradient(180deg, #a6d9ff 0%, #f7fbff 100%);
     min-height: 100vh;
     overflow-x: hidden;
 }
 
-/* Navigation Bar */
 #navbar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    padding: 15px 20px;
+    padding: 16px 20px;
     background: transparent;
-    box-shadow: transparent;
     z-index: 1000;
 }
 
 .nav-controls {
     display: flex;
-    align-items: center;
     gap: 16px;
 }
 
-.language-picker {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: rgba(255, 255, 255, 0.8);
-    padding: 8px 12px;
-    border-radius: 14px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.12);
-}
-
-.language-picker label {
-    font-size: 16px;
-    color: #2C3E50;
-    font-weight: bold;
-}
-
-.language-picker select {
-    border-radius: 10px;
-    border: 2px solid #A7C7E7;
-    padding: 6px 10px;
-    font-size: 16px;
-    background: white;
-    cursor: pointer;
-}
-
 .nav-btn {
-    background: #A7C7E7;
+    background: rgba(255, 255, 255, 0.9);
     border: none;
-    padding: 15px 25px;
-    border-radius: 15px;
+    border-radius: 18px;
+    padding: 12px 16px;
     cursor: pointer;
-    font-size: 28px;
-    transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .nav-btn:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.22);
 }
 
-.nav-btn:active {
-    transform: scale(0.95);
+.nav-icon {
+    width: 32px;
+    height: 32px;
 }
 
-.home-icon {
-    display: block;
-}
-
-/* Progress Bar */
 .progress-container {
     position: fixed;
-    top: 70px;
+    top: 80px;
     left: 0;
     width: 100%;
-    height: 8px;
-    background: rgba(255, 255, 255, 0.5);
+    height: 10px;
+    background: rgba(255, 255, 255, 0.6);
     z-index: 999;
     display: none;
 }
@@ -98,24 +63,22 @@ body {
 
 .progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, #4CAF50, #8BC34A);
-    width: 0%;
-    transition: width 0.5s ease;
+    width: 0;
+    background: linear-gradient(90deg, #66bb6a, #43a047);
+    transition: width 0.3s ease;
 }
 
-/* Main Container */
 #mainContainer {
-    margin-top: 90px;
-    padding: 20px;
+    margin-top: 120px;
+    padding: 24px;
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
 }
 
-/* Screen Management */
 .screen {
     display: none;
-    animation: fadeIn 0.5s ease;
+    animation: fadeIn 0.3s ease;
 }
 
 .screen.active {
@@ -125,7 +88,7 @@ body {
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(10px);
     }
     to {
         opacity: 1;
@@ -133,1211 +96,112 @@ body {
     }
 }
 
-/* Title Styles */
-.title {
-    text-align: center;
-    font-size: 48px;
-    color: #2C3E50;
-    margin-bottom: 40px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-}
-
-.section-title {
-    text-align: center;
-    font-size: 36px;
-    color: #2C3E50;
-    margin-bottom: 30px;
-}
-
-/* Homepage - Submodule Cards */
-.submodule-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    padding: 20px;
-}
-
-.submodule-card {
-    background: white;
-    border: none;
-    border-radius: 25px;
-    padding: 50px 30px;
-    cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-}
-
-.submodule-card:hover {
-    transform: translateY(-10px) scale(1.05);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.25);
-}
-
-.submodule-card:active {
-    transform: translateY(-5px) scale(1.02);
-}
-
-.card-icon {
-    font-size: 80px;
-    margin-bottom: 20px;
-}
-
-.card-title {
-    font-size: 28px;
-    color: #34495E;
-    font-weight: bold;
-}
-
-/* Topic Grid */
 .topic-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
-    padding: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 28px;
 }
 
 .topic-card {
     background: white;
     border: none;
-    border-radius: 20px;
-    padding: 40px 25px;
+    border-radius: 28px;
+    padding: 20px;
     cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.12);
-    font-size: 22px;
-    color: #2C3E50;
-    font-weight: bold;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.16);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .topic-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 18px 30px rgba(0, 0, 0, 0.2);
 }
 
-.topic-card.completed {
-    background: linear-gradient(135deg, #81C784, #66BB6A);
-    color: white;
-}
-
-.topic-card.completed::after {
-    content: ' ✓';
-    font-size: 28px;
-}
-
-/* Content Area */
-.content-area {
-    background: white;
-    border-radius: 25px;
-    padding: 40px;
-    min-height: 400px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-    margin-bottom: 30px;
-}
-
-/* Teaching Content */
-.teach-slide {
-    text-align: center;
-    display: none;
-}
-
-.teach-slide.active {
-    display: block;
-    animation: slideIn 0.5s ease;
-}
-
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateX(50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-.teach-image {
-    max-width: 100%;
-    max-height: 400px;
-    border-radius: 15px;
-    margin: 20px auto;
-    display: block;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-.teach-text {
-    font-size: 28px;
-    color: #34495E;
-    margin: 20px 0;
-    line-height: 1.6;
-}
-
-/* Activity Content */
-.activity-options {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 25px;
-    margin-top: 30px;
-}
-
-.activity-option {
-    background: #F5F5F5;
-    border: 4px solid transparent;
+.topic-image {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
     border-radius: 20px;
+}
+
+.slide-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    border-radius: 30px;
     padding: 30px;
-    cursor: pointer;
-    transition: all 0.3s;
-    text-align: center;
+    min-height: 380px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.16);
 }
 
-.activity-option:hover {
-    transform: scale(1.08);
-    border-color: #4CAF50;
+.slide-image {
+    width: 100%;
+    max-height: 420px;
+    object-fit: contain;
+    border-radius: 24px;
 }
 
-.activity-option.selected {
-    background: #C8E6C9;
-    border-color: #4CAF50;
-    box-shadow: 0 0 20px rgba(76, 175, 80, 0.5);
+.slide-controls {
+    margin-top: 24px;
+    display: flex;
+    justify-content: center;
+    gap: 32px;
 }
 
-.activity-option.wrong {
-    animation: shake 0.5s;
-}
-
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-10px); }
-    75% { transform: translateX(10px); }
-}
-
-.activity-option.correct {
-    background: #81C784;
-    border-color: #4CAF50;
-    animation: glow 0.8s;
-}
-
-@keyframes glow {
-    0%, 100% { box-shadow: 0 0 20px rgba(76, 175, 80, 0.5); }
-    50% { box-shadow: 0 0 40px rgba(76, 175, 80, 0.9); }
-}
-
-.option-image {
-    max-width: 100%;
-    max-height: 200px;
-    border-radius: 12px;
-    margin-bottom: 15px;
-}
-
-.option-text {
-    font-size: 24px;
-    color: #2C3E50;
-    font-weight: bold;
-}
-
-.option-icon {
-    font-size: 80px;
-    margin-bottom: 10px;
-}
-
-/* Quiz Content */
-.quiz-question {
-    font-size: 32px;
-    color: #2C3E50;
-    text-align: center;
-    margin-bottom: 40px;
-    font-weight: bold;
-}
-
-.quiz-options {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 30px;
-    margin-top: 30px;
-}
-
-.quiz-option {
+.control-btn {
     background: white;
-    border: 5px solid #E0E0E0;
-    border-radius: 20px;
-    padding: 35px;
-    cursor: pointer;
-    transition: all 0.3s;
-    text-align: center;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-.quiz-option:hover {
-    transform: scale(1.1);
-    border-color: #64B5F6;
-}
-
-.quiz-option.pulse {
-    animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-        box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7);
-    }
-    50% {
-        transform: scale(1.05);
-        box-shadow: 0 0 20px 10px rgba(76, 175, 80, 0);
-    }
-}
-
-.quiz-option.wrong {
-    animation: shake 0.5s;
-    border-color: #E0E0E0;
-}
-
-.quiz-option.correct {
-    background: #81C784;
-    border-color: #4CAF50;
-    animation: correctAnswer 0.8s;
-}
-
-@keyframes correctAnswer {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.15); }
-    100% { transform: scale(1.1); }
-}
-
-/* Next Button */
-.next-btn {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    background: #4CAF50;
     border: none;
-    border-radius: 50%;
-    width: 80px;
-    height: 80px;
+    border-radius: 20px;
+    padding: 16px 20px;
     cursor: pointer;
-    font-size: 40px;
-    color: white;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-    transition: all 0.3s;
-    z-index: 100;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.next-btn:hover {
-    transform: scale(1.15);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+.control-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.22);
 }
 
-.next-btn:active {
-    transform: scale(0.95);
+.control-icon {
+    width: 36px;
+    height: 36px;
 }
 
-.next-btn.hidden {
-    display: none;
-}
-
-.arrow-icon {
-    display: block;
-}
-
-/* Completion Screen */
 .completion-content {
-    text-align: center;
-    padding: 40px;
-}
-
-.celebration {
-    font-size: 120px;
-    margin: 30px 0;
-    animation: bounce 1s infinite;
-}
-
-@keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
-}
-
-.completion-title {
-    font-size: 56px;
-    color: #4CAF50;
-    margin-bottom: 20px;
-}
-
-.completion-text {
-    font-size: 28px;
-    color: #34495E;
-    margin-bottom: 30px;
-}
-
-.completion-buttons {
     display: flex;
-    justify-content: center;
-    gap: 25px;
-    flex-wrap: wrap;
-    margin-top: 40px;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    background: white;
+    border-radius: 30px;
+    padding: 32px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
 }
 
-.completion-btn {
-    background: white;
-    border: 4px solid #4CAF50;
+.completion-image {
+    width: 100%;
+    max-width: 500px;
     border-radius: 20px;
-    padding: 25px 40px;
-    cursor: pointer;
-    font-size: 24px;
-    font-weight: bold;
-    color: #2C3E50;
-    transition: all 0.3s;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-.completion-btn:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-    background: #4CAF50;
-    color: white;
-}
-
-.btn-icon {
-    font-size: 32px;
-}
-
-/* Success Overlay */
-.success-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(76, 175, 80, 0.2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2000;
-    pointer-events: none;
-}
-
-.success-overlay.hidden {
-    display: none;
-}
-
-.success-stars {
-    font-size: 150px;
-    animation: starBurst 1s ease-out;
-}
-
-@keyframes starBurst {
-    0% {
-        transform: scale(0) rotate(0deg);
-        opacity: 0;
-    }
-    50% {
-        opacity: 1;
-    }
-    100% {
-        transform: scale(2) rotate(360deg);
-        opacity: 0;
-    }
-}
-
-/* Image Container */
-.image-container {
-    text-align: center;
-    margin: 20px 0;
-}
-
-.main-image {
-    max-width: 90%;
-    max-height: 350px;
-    border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-
-/* Emotion Grid */
-.emotion-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 20px;
-    margin: 30px 0;
-}
-
-.emotion-card {
-    background: white;
-    border: 4px solid #E0E0E0;
-    border-radius: 15px;
-    padding: 20px;
-    cursor: pointer;
-    transition: all 0.3s;
-    text-align: center;
-}
-
-.emotion-card:hover {
-    transform: scale(1.1);
-    border-color: #4CAF50;
-}
-
-.emotion-card.selected {
-    background: #C8E6C9;
-    border-color: #4CAF50;
-    transform: scale(1.05);
-}
-
-.emotion-image {
-    width: 100%;
-    max-height: 120px;
-    object-fit: contain;
-    border-radius: 10px;
-    margin-bottom: 10px;
-}
-
-.emotion-label {
-    font-size: 20px;
-    font-weight: bold;
-    color: #2C3E50;
-}
-
-/* Timeline */
-.timeline-container {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin: 40px 0;
-    padding: 30px;
-}
-
-.timeline-stage {
-    text-align: center;
-    cursor: pointer;
-    transition: transform 0.3s;
-}
-
-.timeline-stage:hover {
-    transform: scale(1.1);
-}
-
-.timeline-icon {
-    font-size: 80px;
-    margin-bottom: 15px;
-}
-
-.timeline-label {
-    font-size: 24px;
-    color: #2C3E50;
-    font-weight: bold;
-}
-
-.timeline-stage.selected {
-    transform: scale(1.2);
-}
-
-.timeline-stage.selected .timeline-icon {
-    filter: drop-shadow(0 0 15px rgba(76, 175, 80, 0.8));
-}
-
-/* Routine Builder */
-.routine-steps {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin: 30px 0;
-}
-
-.routine-step {
-    text-align: center;
-    flex: 1;
-    min-width: 120px;
-}
-
-.routine-step-icon {
-    font-size: 60px;
-    margin-bottom: 10px;
-}
-
-.routine-step-label {
-    font-size: 18px;
-    color: #2C3E50;
-    font-weight: bold;
-}
-
-/* Responsive Design */
 @media (max-width: 768px) {
-    .title {
-        font-size: 36px;
+    #mainContainer {
+        padding: 16px;
     }
-    
-    .section-title {
-        font-size: 28px;
+
+    .topic-image {
+        height: 200px;
     }
-    
-    .submodule-grid {
-        grid-template-columns: 1fr;
+
+    .slide-area {
+        padding: 20px;
     }
-    
-    .topic-grid {
-        grid-template-columns: 1fr;
+
+    .nav-icon,
+    .control-icon {
+        width: 28px;
+        height: 28px;
     }
-    
-    .completion-buttons {
-        flex-direction: column;
-    }
-    
-    .quiz-options {
-        grid-template-columns: 1fr;
-    }
-    
-    .activity-options {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Hidden Class */
-.hidden {
-    display: none !important;
-}
-
-/* Update this in styles.css */
-@keyframes hintPulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); box-shadow: 0 0 25px rgba(76, 175, 80, 0.6); }
-    100% { transform: scale(1); }
-}
-
-.visual-hint {
-    animation: hintPulse 1s infinite ease-in-out !important;
-    border: 6px solid #4CAF50 !important; /* Green highlight to guide them */
-    background-color: #f0fff0 !important;
-}
-
-/* Add to styles.css */
-.hidden-nav {
-    display: none !important;
-}
-
-/* Styles for the new submodule images */
-.card-image {
-    width: 180px;         /* Adjust size as needed */
-    height: 180px;        /* Must be same as width for a perfect circle */
-    border-radius: 50%;   /* Makes it round */
-    object-fit: cover;    /* Ensures image isn't stretched */
-    border: none;         /* Removes any border */
-    margin-bottom: 15px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Ensure the card doesn't have extra padding that hides the roundness */
-.submodule-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    border: none; /* Removing border as requested */
-    background: #FFFFFF;
-    border-radius: 30px;
-    cursor: pointer;
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    30% { transform: scale(1.1); }
-    50% { transform: scale(1); }
-    70% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-}
-
-.pulse {
-    animation: pulse 1.5s infinite ease-in-out !important;
-    /* This ensures the round image pulses nicely without a border */
-    filter: drop-shadow(0 0 15px rgba(76, 175, 80, 0.6)); 
-    z-index: 10;
-}
-
-/* Add this to styles.css */
-
-.hygiene-strip {
-    display: flex;
-    flex-direction: row; /* Forces horizontal alignment */
-    justify-content: space-around;
-    align-items: center;
-    background: white;
-    padding: 30px 10px;
-    border-radius: 25px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    margin-top: 50px;
-}
-
-.strip-item {
-    width: 150px !important; /* Increased size */
-    height: 150px !important;
-    border-radius: 20px;
-    background: white;
-    border: 3px solid #eee;
-    overflow: hidden;
-}
-
-.strip-icon {
-    font-size: 60px; /* Big icons for easy seeing */
-}
-
-.strip-label {
-    font-size: 16px;
-    font-weight: bold;
-    color: #444;
-}
-
-/* The "Question Mark" box for Activity/Quiz */
-.missing-slot {
-    width: 80px;
-    height: 80px;
-    border: 5px dashed #4CAF50;
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f0fff0;
-    font-size: 40px;
-}
-/* Carousel Styles */
-.carousel-container {
-    position: relative;
-    width: 100%;
-    min-height: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Styling the Carousel Navigation */
-.carousel-nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 30px;
-}
-
-/* Reusing your existing nav-btn and pulse logic */
-.carousel-nav .nav-btn {
-    width: 80px;
-    height: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%; /* Makes them round and cute */
-    background: #4CAF50;
-    animation: pulse 1.5s infinite ease-in-out; /* Keeps them pulsing */
-}
-
-.carousel-step {
-    display: none;
-    text-align: center;
-    width: 100%;
-}
-
-.carousel-step.active {
-    display: block;
-    animation: fadeIn 0.5s ease;
-}
-
-.nav-btn.small {
-    padding: 10px 20px;
-    font-size: 18px;
-}
-
-/* Container for the image to keep things neat */
-.carousel-image-container {
-    width: 100%;
-    max-width: 400px; /* Adjust size as needed */
-    height: 250px;
-    margin: 0 auto 20px auto;
-    background: #ffffff; /* White background for the image area */
-    border-radius: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    border: 4px solid #4CAF50; /* Matching your green theme */
-}
-
-/* The actual image style */
-.carousel-img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* Ensures the whole image is visible without stretching */
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-/* Container to put image left and buttons right */
-.side-by-side-layout {
-    display: flex;
-    flex-direction: row; /* Side by side */
-    align-items: center;
-    justify-content: space-around;
-    gap: 20px;
-    padding: 20px;
-}
-
-/* Ensure the carousel takes up the left side */
-.carousel-container {
-    flex: 2; /* Takes up more space */
-}
-
-/* Styling for the vertical buttons on the right */
-.carousel-nav-vertical {
-    flex: 1; /* Takes up less space */
-    display: flex;
-    flex-direction: column; /* Stack buttons vertically */
-    align-items: center;
-    gap: 20px;
-}
-
-/* Update your styles.css with this */
-
-.carousel-nav-vertical .nav-btn {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    background: #4CAF50;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    cursor: pointer;
-    
-    /* This is the magic line that makes them enlarge and shrink */
-    animation: pulse 1.5s infinite ease-in-out;
-    
-    /* Adds a soft glow that fits the autism-friendly theme */
-    box-shadow: 0 0 15px rgba(76, 175, 80, 0.4); 
-}
-
-/* Ensure the arrows inside stay centered */
-.carousel-nav-vertical .arrow-icon {
-    font-size: 40px;
-    color: white;
-}
-
-/* If you haven't defined the pulse animation yet, add this too: */
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); } /* Gets bigger */
-    100% { transform: scale(1); } /* Gets smaller */
-}
-
-.missing-step {
-    font-size: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    background: #fffbe6;
-    border: 4px dashed #ffc107;
-    color: #ffc107;
-}
-
-.choice-card img {
-    width: 160px !important; /* Larger images inside options */
-    height: 160px !important;
-    object-fit: contain;
-}
-
-.choice-card:hover {
-    transform: scale(1.05);
-    background-color: #f0fff0;
-}
-
-.choice-card:active {
-    transform: scale(0.95);
-}
-
-/* Ensure the success overlay works for this stage */
-.success-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(255, 255, 255, 0.6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999; /* This must be higher than everything else */
-    pointer-events: none;
-}
-
-.choice-card {
-    width: 220px !important; /* Increased size */
-    padding: 20px !important;
-    border: 5px solid #4CAF50 !important;
-    border-radius: 25px !important;
-    background: white;
-    transition: transform 0.2s;
-    animation: pulse 1.5s infinite ease-in-out; /* Keeps them pulsing until clicked */
-}
-
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-10px); }
-    75% { transform: translateX(10px); }
-}
-
-.shake {
-    animation: shake 0.4s ease-in-out !important;
-    border-color: #ff4444 !important; /* Turns red briefly */
-}
-
-.activity-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100%; /* Ensures it uses the full height of the white area */
-}
-
-/* Ensure the hygiene strip doesn't squish images together */
-.hygiene-strip {
-    flex-wrap: nowrap;
-    overflow-x: visible;
-}
-
-.hidden {
-    display: none !important;
-}
-
-.success-stars {
-    font-size: 100px;
-    animation: celebrate 1s ease-out infinite;
-}
-
-@keyframes celebrate {
-    0% { transform: scale(0.8) rotate(-10deg); }
-    50% { transform: scale(1.2) rotate(10deg); }
-    100% { transform: scale(0.8) rotate(-10deg); }
-}
-
-.target-container {
-    transition: all 0.3s ease;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-}
-
-@keyframes bounceIn {
-    0% { transform: scale(0); }
-    70% { transform: scale(1.2); }
-    100% { transform: scale(1); }
-}
-
-.revealed-tool-card {
-    background: white;
-    border: 4px solid #4CAF50;
-    border-radius: 15px;
-    padding: 10px;
-    width: 120px;
-    text-align: center;
-    animation: popUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-@keyframes popUp {
-    0% { transform: scale(0); }
-    100% { transform: scale(1); }
-}
-
-#activityScreen #activityNextBtn {
-    display: none !important;
-}
-
-/* We only show it when the JavaScript removes the 'hidden' class */
-#activityScreen #activityNextBtn:not(.hidden) {
-    display: block !important;
-}
-
-@keyframes bounceIn {
-    0% { opacity: 0; transform: scale(0.3); }
-    50% { opacity: 1; transform: scale(1.05); }
-    70% { transform: scale(0.9); }
-    100% { transform: scale(1); }
-}
-
-.activity-option.selected {
-    /* Existing styles plus: */
-    z-index: 10;
-    background: white;
-    border-radius: 15px;
-    padding: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
-
-/* Container for the tools on the sides */
-.side-tools {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 150px;
-    align-items: center;
-}
-
-/* Specific styling for the reveal button */
-.reveal-action-btn {
-    display: block;
-    margin: 20px auto;
-    background: #FF9800; /* Orange to stand out */
-    color: white;
-    font-weight: bold;
-}
-
-/* Adjust the GIF size for the side-by-side layout */
-.teach-image-reveal {
-    max-width: 40%;
-    border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-/* Animation for tools popping up */
-.revealed-tool-card {
-    background: white;
-    border: 4px solid #4CAF50;
-    border-radius: 15px;
-    padding: 10px;
-    width: 120px;
-    text-align: center;
-    animation: popUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-@keyframes popUp {
-    0% { transform: scale(0); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
-}
-
-.teach-image-reveal {
-    max-width: 40%;
-    border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    
-    /* Move the image upwards */
-    position: relative;
-    top: -40px; 
-}
-
-.shower-activity-container {
-    display: flex;
-    flex-direction: row;
-    gap: 40px;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
-
-.activity-left, .activity-right {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
-}
-
-.activity-option.correct {
-    background: #81C784;
-    border-color: #4CAF50;
-    animation: glow 0.8s;
-}
-
-/* Ensure images fit well in the boxes */
-.option-image {
-    max-width: 150px;
-    height: auto;
-    display: block;
-    margin: 0 auto 10px;
-}
-
-/* Add this to your styles.css */
-.activity-option {
-    transition: transform 0.3s ease-in-out; /* This makes the hint pulse visible */
-    cursor: pointer;
-    background: white;
-    border-radius: 15px;
-    padding: 20px;
-    text-align: center;
-    border: 3px solid #eee;
-}
-
-/* Ensure the hint works even if other transforms are applied */
-.activity-option:not(.correct):not(.wrong) {
-    transform: scale(1);
-}
-
-/* Gender Selection Styling */
-.gender-selection-container {
-    padding: 20px;
-    text-align: center;
-}
-
-.gender-grid {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    margin-top: 30px;
-}
-
-.gender-card {
-    background: white;
-    border: 6px solid #E0E0E0;
-    border-radius: 30px;
-    padding: 20px;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    width: 280px;
-    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
-}
-
-.gender-card:hover {
-    transform: scale(1.05);
-    border-color: #4CAF50;
-    box-shadow: 0 12px 25px rgba(76, 175, 80, 0.3);
-}
-
-.gender-img {
-    width: 100%;
-    height: 250px;
-    object-fit: contain;
-    border-radius: 15px;
-}
-
-.gender-label {
-    font-size: 32px;
-    font-weight: bold;
-    color: #2C3E50;
-    margin-top: 15px;
-}
-
-.topic-card {
-    background: white;
-    border: 2px solid #e0e0e0;
-    border-radius: 20px;
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    min-width: 200px; /* Ensures the button is wide enough for the circle */
-    min-height: 250px; /* Adjusts height for image + text */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-}
-
-.topic-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-}
-
-/* The resize animation */
-@keyframes randomlyResize {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.08); }
-    100% { transform: scale(1); }
-}
-
-/* Class to trigger the animation */
-.inactivity-prompt {
-    animation: randomlyResize 1s infinite ease-in-out;
-    border-color: #3498db !important;
-    box-shadow: 0 0 20px rgba(52, 152, 219, 0.4);
-    z-index: 10;
-}
-
-/* Ensure smooth transitions for hover */
-.submodule-card, .topic-card, .activity-option, .gender-card, button {
-    transition: all 0.3s ease !important;
-}
-
-/* Container adjustments to allow for bigger items */
-/* 1. Make the main container wider and allow scrolling if necessary */
-.hygiene-strip-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start; /* Align to start to handle overflow better */
-    gap: 15px;
-    width: 95%;            /* Occupy almost full screen width */
-    max-width: 1400px;     /* Increased max width */
-    margin: 0 auto;        /* Center the whole container */
-    padding: 30px;
-    background: #f9f9f9;   /* Optional: light background to see the area */
-    border-radius: 20px;
-    overflow-x: auto;      /* Essential: allows swiping on smaller screens */
-    white-space: nowrap;   /* Keeps everything in one line */
-}
-
-/* 2. Make the individual white boxes (cards) wider */
-.strip-step {
-    flex: 0 0 auto;        /* Prevents the boxes from shrinking */
-    width: 220px;          /* Wider white box to fit big images */
-    background: white;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-    text-align: center;
-    display: inline-block; /* Works with nowrap */
-}
-
-/* 3. Ensure images fill the wider box properly */
-.strip-step img {
-    width: 180px;          /* Larger image size */
-    height: 180px;
-    object-fit: contain;
-    margin-bottom: 15px;
-}
-
-/* 4. Style the text inside the wider box */
-.strip-step p {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #333;
-    margin: 0;
-}
-
-/* Ensure the empty slot matches the wider white box size */
-.activity-slot.strip-step {
-    border: 3px dashed #ccc;
-    background-color: #f0f0f0;
-    width: 220px; /* Matching the width we set for the teach page */
-    height: 250px; /* Adjust height to match filled cards */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.activity-slot.filled {
-    border: none;
-    background-color: white;
-}
-
-/* This replaces the random pulsing */
-.pulse-hint {
-    animation: pointToCorrect 1.5s infinite ease-in-out;
-    border: 5px solid #27ae60 !important; /* Green border to signal correctness */
-    box-shadow: 0 0 20px rgba(39, 174, 96, 0.6);
-}
-
-@keyframes pointToCorrect {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); } /* Grows slightly */
-    100% { transform: scale(1); }
-}
-/* Targeted Hint Style */
-.pulse {
-    animation: hintPulse 1.5s infinite ease-in-out;
-    border: 5px solid #FFD700 !important; /* Gold Hint Border */
-    box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
-    transition: transform 0.3s ease;
-}
-
-@keyframes hintPulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
 }

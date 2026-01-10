@@ -3,108 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Puberty Awareness - Learning App</title>
+    <title></title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Navigation Bar -->
     <div id="navbar">
         <div class="nav-controls">
-            <button id="homeBtn" class="nav-btn" aria-label="Home">
-                <span class="home-icon">🏠</span>
+            <button id="homeBtn" class="nav-btn">
+                <img src="https://cdn-icons-png.flaticon.com/512/1946/1946488.png" alt="" class="nav-icon">
             </button>
-            <div class="language-picker">
-                <label for="languageSelect" data-i18n="Language">Language</label>
-                <select id="languageSelect" aria-label="Language">
-                    <option value="en">English</option>
-                    <option value="ms">Bahasa Melayu</option>
-                    <option value="zh">中文</option>
-                </select>
-            </div>
+            <button id="backBtn" class="nav-btn">
+                <img src="https://cdn-icons-png.flaticon.com/512/271/271220.png" alt="" class="nav-icon">
+            </button>
         </div>
     </div>
 
-    <!-- Progress Bar -->
     <div id="progressBar" class="progress-container">
         <div id="progressFill" class="progress-fill"></div>
     </div>
 
-    <!-- Main Container -->
     <div id="mainContainer">
-        
-        <!-- HOMEPAGE -->
         <div id="homepage" class="screen active">
-            <h1 class="title" data-i18n="Welcome here!">Welcome here!</h1>
-            <div class="submodule-grid">
-                <button class="submodule-card" data-submodule="1">
-                    <img src="https://thumbs.dreamstime.com/b/smiley-emoji-group-vector-design-emojis-yellow-smiley-face-friends-happy-together-facial-expression-friendship-design-186816457.jpg" class="card-image">
-                    <div class="card-title" data-i18n="Physical and Emotional Changes">Physical and Emotional Changes</div>
+            <div class="topic-grid">
+                <button class="topic-card" data-topic="changes">
+                    <img src="https://media.giphy.com/media/8qD6G0qV7Q4m8/giphy.gif" alt="" class="topic-image">
                 </button>
-                <button class="submodule-card" data-submodule="2">
-                    <img src="https://media.cnn.com/api/v1/images/stellar/prod/gettyimages-71929509.jpg?c=original" class="card-image">
-                    <div class="card-title" data-i18n="Hygiene & Self-Care Routine">Hygiene & Self-Care Routine</div>
+                <button class="topic-card" data-topic="hygiene">
+                    <img src="https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif" alt="" class="topic-image">
                 </button>
-                <button class="submodule-card" data-submodule="3">
-                    <img src="https://thumbs.dreamstime.com/b/father-son-child-draw-heart-shape-mirror-preschooler-shaving-foam-playing-bathroom-60099995.jpg" class="card-image">
-					<div class="card-title" data-i18n="Confidence, Self-Acceptance and Lifestyle">Confidence, Self-Acceptance and Lifestyle</div>
+                <button class="topic-card" data-topic="confidence">
+                    <img src="https://media.giphy.com/media/3o7TKxv9aPauSE0G3y/giphy.gif" alt="" class="topic-image">
                 </button>
             </div>
         </div>
 
-        <!-- SUBMODULE SELECTION SCREEN -->
-        <div id="topicSelection" class="screen">
-            <h2 id="submoduleTitle" class="title"></h2>
-            <div id="topicGrid" class="topic-grid"></div>
+        <div id="slideScreen" class="screen">
+            <div class="slide-area">
+                <img id="slideImage" src="" alt="" class="slide-image">
+            </div>
+            <div class="slide-controls">
+                <button id="prevBtn" class="control-btn">
+                    <img src="https://cdn-icons-png.flaticon.com/512/271/271220.png" alt="" class="control-icon">
+                </button>
+                <button id="nextBtn" class="control-btn">
+                    <img src="https://cdn-icons-png.flaticon.com/512/271/271228.png" alt="" class="control-icon">
+                </button>
+            </div>
         </div>
 
-        <!-- TEACHING SCREEN -->
-        <div id="teachScreen" class="screen">
-            <h2 id="teachTitle" class="section-title"></h2>
-            <div id="teachContent" class="content-area"></div>
-            <button id="teachNextBtn" class="next-btn">
-                <span class="arrow-icon">➜</span>
-            </button>
-        </div>
-
-        <!-- ACTIVITY SCREEN -->
-        <div id="activityScreen" class="screen">
-            <h2 id="activityTitle" class="section-title"></h2>
-            <div id="activityContent" class="content-area"></div>
-            <button id="activityNextBtn" class="next-btn hidden">
-                <span class="arrow-icon">➜</span>
-            </button>
-        </div>
-
-        <!-- QUIZ SCREEN -->
-        <div id="quizScreen" class="screen">
-            <h2 id="quizTitle" class="section-title"></h2>
-            <div id="quizContent" class="content-area"></div>
-        </div>
-
-        <!-- COMPLETION SCREEN -->
         <div id="completionScreen" class="screen">
             <div class="completion-content">
-                <div class="celebration">🎉</div>
-                <h2 class="completion-title" data-i18n="Great Job!">Great Job!</h2>
-                <div class="completion-buttons">
-                    <button id="nextTopicBtn" class="completion-btn hidden">
-                        <span class="btn-icon">➜</span>
-                        <span data-i18n="NEXT">NEXT</span>
-                    </button>
-                </div>
+                <img src="https://media.giphy.com/media/111ebonMs90YLu/giphy.gif" alt="" class="completion-image">
+                <button id="restartBtn" class="control-btn">
+                    <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="" class="control-icon">
+                </button>
             </div>
         </div>
-
-
-    </div>
-	
-	<div id="activity-screen" class="hidden">
-		<div id="activity-content"></div>
-	</div>
-
-    <!-- Success Feedback Overlay -->
-    <div id="successOverlay" class="success-overlay hidden">
-        <div class="success-stars">⭐✨🌟</div>
     </div>
 
     <script src="script.js"></script>

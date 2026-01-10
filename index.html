@@ -34,8 +34,66 @@
         
         <!-- HOMEPAGE -->
         <div id="homepage" class="screen active">
-            <h1 class="title" data-i18n="Welcome here!">Welcome here!</h1>
-            <div class="submodule-grid">
+            <a class="skip-link" href="#submoduleGrid" data-i18n="Skip to topics">Skip to topics</a>
+            <section class="hero">
+                <div class="hero-content">
+                    <h1 class="title" data-i18n="Welcome here!">Welcome here!</h1>
+                    <p class="hero-subtitle" data-i18n="Explore puberty with playful lessons and activities.">
+                        Explore puberty with playful lessons and activities.
+                    </p>
+                    <div class="hero-actions">
+                        <button id="quickStartBtn" class="primary-btn" data-i18n="Start learning">Start learning</button>
+                        <button id="resumeBtn" class="secondary-btn hidden" data-i18n="Resume learning">Resume learning</button>
+                    </div>
+                    <div id="progressSummary" class="progress-summary" aria-live="polite">
+                        <div class="progress-header">
+                            <span class="progress-label" data-i18n="Progress">Progress</span>
+                            <span id="progressCount" class="progress-count"></span>
+                        </div>
+                        <div class="progress-meter">
+                            <div id="homeProgressFill" class="progress-meter-fill"></div>
+                        </div>
+                        <p class="progress-note" data-i18n="Keep going! You're doing great.">Keep going! You're doing great.</p>
+                    </div>
+                </div>
+                <div class="hero-illustration" aria-hidden="true">
+                    <div class="hero-card">
+                        <div class="hero-emoji">✨</div>
+                        <p data-i18n="Learn at your pace">Learn at your pace</p>
+                    </div>
+                    <div class="hero-card">
+                        <div class="hero-emoji">🎯</div>
+                        <p data-i18n="Practice with quizzes">Practice with quizzes</p>
+                    </div>
+                    <div class="hero-card">
+                        <div class="hero-emoji">🎉</div>
+                        <p data-i18n="Celebrate every win">Celebrate every win</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="feature-grid">
+                <div class="feature-card">
+                    <h2 data-i18n="Interactive lessons">Interactive lessons</h2>
+                    <p data-i18n="Short, friendly slides help kids learn with confidence.">
+                        Short, friendly slides help kids learn with confidence.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <h2 data-i18n="Hands-on activities">Hands-on activities</h2>
+                    <p data-i18n="Tap, drag, and explore with simple activities.">
+                        Tap, drag, and explore with simple activities.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <h2 data-i18n="Positive feedback">Positive feedback</h2>
+                    <p data-i18n="Celebrations and hints make every step encouraging.">
+                        Celebrations and hints make every step encouraging.
+                    </p>
+                </div>
+            </section>
+
+            <div id="submoduleGrid" class="submodule-grid">
                 <button class="submodule-card" data-submodule="1">
                     <img src="https://thumbs.dreamstime.com/b/smiley-emoji-group-vector-design-emojis-yellow-smiley-face-friends-happy-together-facial-expression-friendship-design-186816457.jpg" class="card-image">
                     <div class="card-title" data-i18n="Physical and Emotional Changes">Physical and Emotional Changes</div>
@@ -87,6 +145,14 @@
                 <div class="celebration">🎉</div>
                 <h2 class="completion-title" data-i18n="Great Job!">Great Job!</h2>
                 <div class="completion-buttons">
+                    <button id="replayBtn" class="completion-btn">
+                        <span class="btn-icon">🔁</span>
+                        <span data-i18n="Replay">Replay</span>
+                    </button>
+                    <button id="backToTopicsBtn" class="completion-btn">
+                        <span class="btn-icon">📚</span>
+                        <span data-i18n="Back to topics">Back to topics</span>
+                    </button>
                     <button id="nextTopicBtn" class="completion-btn hidden">
                         <span class="btn-icon">➜</span>
                         <span data-i18n="NEXT">NEXT</span>

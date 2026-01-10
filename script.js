@@ -17,9 +17,28 @@ let currentState = {
 
 let promptTimeout = null;
 let currentLanguage = 'en';
+let lastLocation = null;
 
 const translations = {
     ms: {
+        "Skip to topics": "Langkau ke topik",
+        "Explore puberty with playful lessons and activities.": "Terokai akil baligh dengan pelajaran dan aktiviti yang menyeronokkan.",
+        "Start learning": "Mula belajar",
+        "Resume learning": "Sambung belajar",
+        "Progress": "Kemajuan",
+        "Topics completed": "topik selesai",
+        "Keep going! You're doing great.": "Teruskan! Kamu hebat.",
+        "Learn at your pace": "Belajar mengikut rentak sendiri",
+        "Practice with quizzes": "Latihan dengan kuiz",
+        "Celebrate every win": "Raikan setiap kejayaan",
+        "Interactive lessons": "Pelajaran interaktif",
+        "Short, friendly slides help kids learn with confidence.": "Slaid ringkas dan mesra membantu anak belajar dengan yakin.",
+        "Hands-on activities": "Aktiviti praktikal",
+        "Tap, drag, and explore with simple activities.": "Sentuh, seret dan teroka dengan aktiviti mudah.",
+        "Positive feedback": "Maklum balas positif",
+        "Celebrations and hints make every step encouraging.": "Sambutan dan petunjuk menjadikan setiap langkah lebih menggalakkan.",
+        "Replay": "Ulang semula",
+        "Back to topics": "Kembali ke topik",
         "Language": "Bahasa",
         "Welcome here!": "Selamat datang!",
         "Physical and Emotional Changes": "Perubahan Fizikal dan Emosi",
@@ -137,6 +156,24 @@ const translations = {
         "Great job! You finished this topic.": "Syabas! Kamu sudah tamatkan topik ini."
     },
     zh: {
+        "Skip to topics": "跳到主题",
+        "Explore puberty with playful lessons and activities.": "用有趣的课程与活动探索青春期。",
+        "Start learning": "开始学习",
+        "Resume learning": "继续学习",
+        "Progress": "进度",
+        "Topics completed": "已完成主题",
+        "Keep going! You're doing great.": "继续加油！你做得很棒。",
+        "Learn at your pace": "按自己的节奏学习",
+        "Practice with quizzes": "用测验练习",
+        "Celebrate every win": "庆祝每一次进步",
+        "Interactive lessons": "互动课程",
+        "Short, friendly slides help kids learn with confidence.": "简短友好的幻灯片帮助孩子自信学习。",
+        "Hands-on activities": "动手活动",
+        "Tap, drag, and explore with simple activities.": "点击、拖动并通过简单活动探索。",
+        "Positive feedback": "积极反馈",
+        "Celebrations and hints make every step encouraging.": "庆祝与提示让每一步更有鼓励。",
+        "Replay": "再来一次",
+        "Back to topics": "返回主题",
         "Language": "语言",
         "Welcome here!": "欢迎来到这里！",
         "Physical and Emotional Changes": "身体与情绪变化",
@@ -691,10 +728,12 @@ const content = {
 // INITIALIZATION
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
+    loadProgress();
+    loadLastLocation();
     initializeLanguage();
     initializeApp();
     setupEventListeners();
-    loadProgress();
+    resetPromptTimeout();
 });
 
 function initializeLanguage() {
@@ -726,6 +765,7 @@ function updateStaticText() {
         const key = node.getAttribute('data-i18n');
         node.textContent = translateText(key);
     });
+    updateHomeSummary();
 }
 
 function rerenderCurrentScreen() {
@@ -753,11 +793,15 @@ function rerenderCurrentScreen() {
 function initializeApp() {
     showScreen('homepage');
     currentState.stage = 'home';
+    updateHomeSummary();
 }
 
 function setupEventListeners() {
     // Home button
-    document.getElementById('homeBtn').addEventListener('click', goHome);
+    const homeBtn = document.getElementById('homeBtn');
+    if (homeBtn) {
+        homeBtn.addEventListener('click', goHome);
+    }
     
     // Submodule cards
     document.querySelectorAll('.submodule-card').forEach(card => {
@@ -768,13 +812,44 @@ function setupEventListeners() {
     });
     
     // Next buttons
-    document.getElementById('teachNextBtn').addEventListener('click', advanceTeachSlide);
-    document.getElementById('activityNextBtn').addEventListener('click', goToQuiz);
+    const teachNextBtn = document.getElementById('teachNextBtn');
+    if (teachNextBtn) {
+        teachNextBtn.addEventListener('click', advanceTeachSlide);
+    }
+    const activityNextBtn = document.getElementById('activityNextBtn');
+    if (activityNextBtn) {
+        activityNextBtn.addEventListener('click', goToQuiz);
+    }
     
     // Completion buttons
-    document.getElementById('replayBtn').addEventListener('click', replayTopic);
-    document.getElementById('nextTopicBtn').addEventListener('click', goToNextTopic);
-    document.getElementById('backToTopicsBtn').addEventListener('click', backToTopics);
+    const replayBtn = document.getElementById('replayBtn');
+    if (replayBtn) {
+        replayBtn.addEventListener('click', replayTopic);
+    }
+    const nextTopicBtn = document.getElementById('nextTopicBtn');
+    if (nextTopicBtn) {
+        nextTopicBtn.addEventListener('click', goToNextTopic);
+    }
+    const backToTopicsBtn = document.getElementById('backToTopicsBtn');
+    if (backToTopicsBtn) {
+        backToTopicsBtn.addEventListener('click', backToTopics);
+    }
+
+    const quickStartBtn = document.getElementById('quickStartBtn');
+    if (quickStartBtn) {
+        quickStartBtn.addEventListener('click', () => {
+            const grid = document.getElementById('submoduleGrid');
+            if (grid) {
+                grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                grid.querySelector('button')?.focus();
+            }
+        });
+    }
+
+    const resumeBtn = document.getElementById('resumeBtn');
+    if (resumeBtn) {
+        resumeBtn.addEventListener('click', resumeLastTopic);
+    }
 }
 
 // ==========================================
@@ -797,6 +872,7 @@ function showScreen(screenId) {
     const navbar = document.getElementById('navbar');
     if (screenId === 'homepage') {
         navbar.classList.add('hidden-nav');
+        updateHomeSummary();
     } else {
         navbar.classList.remove('hidden-nav');
     }
@@ -826,6 +902,39 @@ function goHome() {
     };
     showScreen('homepage');
     clearPromptTimeout();
+}
+
+function getTotalTopics() {
+    return Object.values(content).reduce((sum, submodule) => sum + submodule.topics.length, 0);
+}
+
+function getCompletedTopics() {
+    return Object.values(currentState.progress).reduce((sum, topics) => sum + topics.length, 0);
+}
+
+function updateHomeSummary() {
+    const progressCount = document.getElementById('progressCount');
+    const progressFill = document.getElementById('homeProgressFill');
+    const resumeBtn = document.getElementById('resumeBtn');
+
+    if (!progressCount || !progressFill) {
+        return;
+    }
+
+    const totalTopics = getTotalTopics();
+    const completedTopics = getCompletedTopics();
+    const percentage = totalTopics > 0 ? (completedTopics / totalTopics) * 100 : 0;
+
+    progressCount.textContent = `${completedTopics}/${totalTopics} ${translateText('Topics completed')}`;
+    progressFill.style.width = `${percentage}%`;
+
+    if (resumeBtn) {
+        if (lastLocation && lastLocation.submodule && lastLocation.topic) {
+            resumeBtn.classList.remove('hidden');
+        } else {
+            resumeBtn.classList.add('hidden');
+        }
+    }
 }
 
 function selectSubmodule(submoduleId) {
@@ -888,6 +997,7 @@ function selectTopic(topicId) {
     currentState.teachSlide = 0;
     currentState.quizSlide = 0; // Add this line to reset the quiz counter
     currentState.stage = 'teach';
+    saveLastLocation();
     showTeachContent();
 }
 
@@ -1867,12 +1977,56 @@ function loadProgress() {
     }
 }
 
-// At the bottom of script.js
-window.onload = () => {
-    loadProgress();
-    showScreen('homepage'); 
-    resetPromptTimeout(); // Start the 2-second timer for the main page buttons
-};
+function saveLastLocation() {
+    if (!currentState.submodule || !currentState.topic) {
+        return;
+    }
+    lastLocation = {
+        submodule: currentState.submodule,
+        topic: currentState.topic
+    };
+    localStorage.setItem('pubertyAppLastLocation', JSON.stringify(lastLocation));
+}
+
+function loadLastLocation() {
+    const saved = localStorage.getItem('pubertyAppLastLocation');
+    if (!saved) {
+        return;
+    }
+    try {
+        const parsed = JSON.parse(saved);
+        if (parsed && parsed.submodule && parsed.topic) {
+            lastLocation = parsed;
+        }
+    } catch (error) {
+        lastLocation = null;
+    }
+}
+
+function resumeLastTopic() {
+    if (!lastLocation) {
+        loadLastLocation();
+    }
+    if (!lastLocation) {
+        return;
+    }
+    const submoduleKey = `submodule${lastLocation.submodule}`;
+    const submodule = content[submoduleKey];
+    if (!submodule) {
+        return;
+    }
+    const topic = submodule.topics.find((item) => item.id === lastLocation.topic);
+    if (!topic) {
+        return;
+    }
+    currentState.submodule = lastLocation.submodule;
+    currentState.topic = lastLocation.topic;
+    currentState.teachSlide = 0;
+    currentState.quizSlide = 0;
+    currentState.stage = 'teach';
+    showTeachContent();
+}
+
 
 function updateTeachUI() {
     const submoduleKey = `submodule${currentState.submodule}`;

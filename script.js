@@ -829,9 +829,20 @@ function setupEventListeners() {
     document.getElementById('activityNextBtn').addEventListener('click', goToQuiz);
     
     // Completion buttons
-    document.getElementById('replayBtn').addEventListener('click', replayTopic);
-    document.getElementById('nextTopicBtn').addEventListener('click', goToNextTopic);
-    document.getElementById('backToTopicsBtn').addEventListener('click', backToTopics);
+    const replayBtn = document.getElementById('replayBtn');
+    if (replayBtn) {
+        replayBtn.addEventListener('click', replayTopic);
+    }
+
+    const nextTopicBtn = document.getElementById('nextTopicBtn');
+    if (nextTopicBtn) {
+        nextTopicBtn.addEventListener('click', goToNextTopic);
+    }
+
+    const backToTopicsBtn = document.getElementById('backToTopicsBtn');
+    if (backToTopicsBtn) {
+        backToTopicsBtn.addEventListener('click', backToTopics);
+    }
 
     const washFaceBackBtn = document.getElementById('washFaceBackBtn');
     if (washFaceBackBtn) {

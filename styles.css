@@ -25,6 +25,37 @@ body {
     z-index: 1000;
 }
 
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.language-picker {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 8px 12px;
+    border-radius: 14px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+}
+
+.language-picker label {
+    font-size: 16px;
+    color: #2C3E50;
+    font-weight: bold;
+}
+
+.language-picker select {
+    border-radius: 10px;
+    border: 2px solid #A7C7E7;
+    padding: 6px 10px;
+    font-size: 16px;
+    background: white;
+    cursor: pointer;
+}
+
 .nav-btn {
     background: #A7C7E7;
     border: none;

@@ -1118,6 +1118,12 @@ else if (slide.type === "strip") {
             stepDiv.classList.add('is-clickable');
             stepDiv.setAttribute('role', 'button');
             stepDiv.setAttribute('tabindex', '0');
+            stepDiv.classList.add('wash-face-hint');
+            stepDiv.setAttribute('aria-label', translateText("Wash Face"));
+            const hintBadge = document.createElement('span');
+            hintBadge.className = 'click-hint';
+            hintBadge.textContent = '👆';
+            stepDiv.appendChild(hintBadge);
             const handleOpen = () => openWashFaceModal(step.modalImages);
             stepDiv.addEventListener('click', handleOpen);
             stepDiv.addEventListener('keydown', (event) => {

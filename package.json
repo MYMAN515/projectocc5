@@ -1,0 +1,30 @@
+{
+  "name": "puberty-buddy",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@libsql/client": "^0.6.1",
+    "@tanstack/react-query": "^5.59.0",
+    "drizzle-orm": "^0.33.0",
+    "hono": "^4.6.5",
+    "next": "15.0.3",
+    "nuqs": "^1.20.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.2",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "drizzle-kit": "^0.24.2",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.6.3"
+  }
+}

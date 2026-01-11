@@ -15,7 +15,7 @@ export async function markTopicCompleted(profileId: string, topicId: number) {
     await db.insert(topicProgress).values({
       profileId,
       topicId,
-      completedAt: new Date()
+      completedAt: new Date().toISOString()
     });
   }
 }

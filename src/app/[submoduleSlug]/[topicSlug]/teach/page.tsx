@@ -1,12 +1,50 @@
 import Link from "next/link";
 import { getTopicBySlug } from "@/features/content/content.service";
+import type { MediaAsset, TeachSlide } from "@/features/content/content.types";
 
 type PageProps = {
   params: { submoduleSlug: string; topicSlug: string };
 };
 
+const isMediaAsset = (value: unknown): value is MediaAsset => {
+  if (!value || typeof value !== "object") {
+    return false;
+  }
+  return "url" in value && typeof (value as { url?: unknown }).url === "string";
+};
+
 export default function TeachPage({ params }: PageProps) {
   const { submodule, topic } = getTopicBySlug(params.submoduleSlug, params.topicSlug);
+
+  const resolveImageAsset = (image: TeachSlide["image"]): MediaAsset | string | undefined => {
+    if (!image) {
+      return undefined;
+    }
+    if (typeof image === "string") {
+      return image;
+    }
+    if (isMediaAsset(image)) {
+      return image;
+    }
+    const localized = Object.values(image).find((value) => typeof value === "string" || isMediaAsset(value));
+    return localized;
+  };
+
+  const resolveImageSrc = (image: TeachSlide["image"]): string | undefined => {
+    const asset = resolveImageAsset(image);
+    if (!asset) {
+      return undefined;
+    }
+    return typeof asset === "string" ? asset : asset.url;
+  };
+
+  const resolveImageAlt = (image: TeachSlide["image"]): string => {
+    const asset = resolveImageAsset(image);
+    if (!asset || typeof asset === "string") {
+      return "";
+    }
+    return asset.alt ?? "";
+  };
 
   return (
     <main className="mx-auto flex min-h-screen max-w-4xl flex-col gap-8 px-6 py-16">
@@ -29,11 +67,11 @@ export default function TeachPage({ params }: PageProps) {
                 <source src={slide.videoUrl} type="video/mp4" />
               </video>
             ) : null}
-            {"image" in slide && slide.image ? (
+            {"image" in slide && resolveImageSrc(slide.image) ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img
-                src={typeof slide.image === "string" ? slide.image : "url" in slide.image ? slide.image.url : ""}
-                alt=""
+                src={resolveImageSrc(slide.image)}
+                alt={resolveImageAlt(slide.image)}
                 className="mt-4 w-full rounded-2xl object-cover"
               />
             ) : null}

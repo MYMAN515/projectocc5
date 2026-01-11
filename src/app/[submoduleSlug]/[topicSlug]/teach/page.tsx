@@ -6,6 +6,8 @@ type PageProps = {
   params: { submoduleSlug: string; topicSlug: string };
 };
 
+type SlideWithImage = Extract<TeachSlide, { image?: unknown }>;
+
 const isMediaAsset = (value: unknown): value is MediaAsset => {
   if (!value || typeof value !== "object") {
     return false;
@@ -13,7 +15,7 @@ const isMediaAsset = (value: unknown): value is MediaAsset => {
   return "url" in value && typeof (value as { url?: unknown }).url === "string";
 };
 
-const resolveImageAsset = (image: TeachSlide["image"]): MediaAsset | string | undefined => {
+const resolveImageAsset = (image: SlideWithImage["image"]): MediaAsset | string | undefined => {
   if (!image) {
     return undefined;
   }
@@ -26,7 +28,7 @@ const resolveImageAsset = (image: TeachSlide["image"]): MediaAsset | string | un
   return Object.values(image).find((value) => typeof value === "string" || isMediaAsset(value));
 };
 
-const resolveImageMeta = (image: TeachSlide["image"]): { src?: string; alt: string } => {
+const resolveImageMeta = (image: SlideWithImage["image"]): { src?: string; alt: string } => {
   const asset = resolveImageAsset(image);
   if (!asset) {
     return { src: undefined, alt: "" };
